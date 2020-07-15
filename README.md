@@ -32,7 +32,7 @@ public class AnalisysTest {
 
     static {
         sb.append("Michael Jordan was one of the best basketball players of all time.");
-        sb.append("Scoring was Jordan's stand-out skill, but he still holds a defensive NBA record, with eight steals in a half.");  # Sample text to be analyzed
+        sb.append("Scoring was Jordan's stand-out skill, but he still holds a defensive NBA record, with eight steals in a half.");  // Sample text to be analyzed
     }
 
     public static String getSampleText() {
@@ -45,7 +45,8 @@ public class AnalisysTest {
         return new Authentication(authenticator);
     }
 
-    //Method for selecting the resource to be call by the API; as today, the API provides the standard context only, and five languages such as English, French, Spanish, German and Italian
+    //Method for selecting the resource to be call by the API; as today, the API provides the standard context only, and five languages such as English, 
+    //French, Spanish, German and Italian
     public static Analyzer createAnalyzer() throws Exception {
         return new Analyzer(AnalyzerConfig.builder()
                                           .withVersion(API.Versions.V1)
@@ -58,18 +59,23 @@ public class AnalisysTest {
     public static void main(String[] args) {
         try {
             Analyzer analyzer = createAnalyzer();
-
-            // Full Analisys
-            analyzer.analyze(getSampleText()).prettyPrint();
-
+            ResponseDocument response = null;
+            
             // Disambiguation Analisys
-            analyzer.disambiguation(getSampleText()).prettyPrint();
+            response = analyzer.disambiguation(getSampleText());
+            response.prettyPrint();
 
             // Relevants Analisys
-            analyzer.relevants(getSampleText()).prettyPrint();
+            response = analyzer.relevants(getSampleText());
+            response.prettyPrint();
 
             // Entities Analisys
-            analyzer.entities(getSampleText()).prettyPrint();
+            response = analyzer.entities(getSampleText());
+            response.prettyPrint();
+            
+            // Full Analisys
+            response = analyzer.analyze(getSampleText());
+            response.prettyPrint();
         }
         catch(Exception ex) {
             ex.printStackTrace();
@@ -101,7 +107,7 @@ public class CategorizationTest {
 
     static {
         sb.append("Michael Jordan was one of the best basketball players of all time.");
-        sb.append("Scoring was Jordan's stand-out skill, but he still holds a defensive NBA record, with eight steals in a half.");
+        sb.append("Scoring was Jordan's stand-out skill, but he still holds a defensive NBA record, with eight steals in a half.");  // Sample text to be analyzed
     }
 
     public static String getSampleText() {
@@ -112,7 +118,9 @@ public class CategorizationTest {
         Authenticator authenticator = new BasicAuthenticator(new Credential("USERNAME", "PASSWORD"));
         return new Authentication(authenticator);
     }
-
+    
+    //Method for selecting the resource to be call by the API; as today, the API provides the IPTC classifier only, and five languages such as English, 
+    //French, Spanish, German and Italian
     public static Categorizer createCategorizer() throws Exception {
         return new Categorizer(CategorizerConfig.builder()
                                                 .withVersion(API.Versions.V1)
@@ -125,6 +133,8 @@ public class CategorizationTest {
     public static void main(String[] args) {
         try {
             Categorizer categorizer = createCategorizer();
+            
+            //Perform the IPTC classification and store it into a Response Object
             ResponseDocument categorization = categorizer.categorize(getSampleText());
             categorization.prettyPrint();
         }
@@ -138,8 +148,8 @@ public class CategorizationTest {
 ## Documentation
 
 The ResponseDocument class provides an object-based representation of the API JSON response as described in the [documentation portal](https://docs.expert.ai/nlapi/v1/):
-* disambiguation Response 
-* 
-* 
-* 
-* 
+* [disambiguation Response](https://docs.expert.ai/nlapi/v1/reference/output/linguistic-analysis/) 
+* [relevants Response](https://docs.expert.ai/nlapi/v1/reference/output/keyphrase-extraction/)
+* [entities Response](https://docs.expert.ai/nlapi/v1/guide/entity-recognition/)
+* [full analysis Response](https://docs.expert.ai/nlapi/v1/reference/output/full-analysis/)
+* [classification Response](https://docs.expert.ai/nlapi/v1/reference/output/classification/)
