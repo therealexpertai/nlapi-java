@@ -12,7 +12,7 @@ See for yourself what expert.ai’s Natural Language API can do for your applica
 
 ## Usage
 
-### Analisys
+### Document Analisys
 
 ```java
 
@@ -75,7 +75,7 @@ public class AnalisysTest {
 
 ```
 
-### Categorization
+### Document Classification
 
 ```java
 
@@ -132,4 +132,4 @@ public class CategorizationTest {
 ```
 ## Documentation
 
-Checkout our [Live Docs](https://docs.expert.ai/)!
+The ResponseDocument class provides object-based representation of the API JSON response as described in the documentation portal at (https://docs.expert.ai/nlapi/v1/).
