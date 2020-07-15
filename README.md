@@ -116,8 +116,9 @@ public class CategorizationTest {
         return sb.toString();
     }
 
+    //Method for setting the authentication credentials - set your credentials here.
     public static Authentication createAuthentication() throws Exception {
-        Authenticator authenticator = new BasicAuthenticator(new Credential("USERNAME", "PASSWORD"));
+        Authenticator authenticator = new BasicAuthenticator(new Credential("PUT HERE YOUR USERNAME", " PUT HERE YOUR PASSWORD"));
         return new Authentication(authenticator);
     }
     
