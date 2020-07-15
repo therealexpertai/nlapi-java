@@ -150,7 +150,7 @@ public class CategorizationTest {
 ```
 ## Documentation
 
-The ResponseDocument class provides an object-based representation of the API JSON response as described in the [documentation portal](https://docs.expert.ai/nlapi/v1/):
+The ResponseDocument class provides an object-based representation of the API JSON response as described on the [documentation portal](https://docs.expert.ai/nlapi/v1/):
 * [disambiguation Response](https://docs.expert.ai/nlapi/v1/reference/output/linguistic-analysis/) 
 * [relevants Response](https://docs.expert.ai/nlapi/v1/reference/output/keyphrase-extraction/)
 * [entities Response](https://docs.expert.ai/nlapi/v1/guide/entity-recognition/)
