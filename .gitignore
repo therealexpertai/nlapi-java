@@ -1,0 +1,24 @@
+# SVN
+.svn
+
+# Maven
+/target
+
+# Gradle
+/.gradle
+/build
+
+# Intellij IDEA
+/build
+/out
+.idea/workspace.xml
+.idea/uiDesigner.xml
+.idea/markdown-exported-files.xml
+.idea/markdown-navigator
+.idea/libraries/*
+.idea/libraries/*
+
+# Eclipse
+.classpath
+.projects
+.settings
