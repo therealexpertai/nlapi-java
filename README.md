@@ -30,9 +30,10 @@ public class AnalisysTest {
 
     static StringBuilder sb = new StringBuilder();
 
+    // Sample text to be analyzed
     static {
         sb.append("Michael Jordan was one of the best basketball players of all time.");
-        sb.append("Scoring was Jordan's stand-out skill, but he still holds a defensive NBA record, with eight steals in a half.");  // Sample text to be analyzed
+        sb.append("Scoring was Jordan's stand-out skill, but he still holds a defensive NBA record, with eight steals in a half.");  
     }
 
     public static String getSampleText() {
@@ -45,8 +46,8 @@ public class AnalisysTest {
         return new Authentication(authenticator);
     }
 
-    //Method for selecting the resource to be call by the API; as today, the API provides the standard context only, and five languages such as English, 
-    //French, Spanish, German and Italian
+    //Method for selecting the resource to be call by the API; as today, the API provides the standard context only, and  
+    //five languages such as English, French, Spanish, German and Italian
     public static Analyzer createAnalyzer() throws Exception {
         return new Analyzer(AnalyzerConfig.builder()
                                           .withVersion(API.Versions.V1)
@@ -104,10 +105,11 @@ import ai.expert.nlapi.v1.message.ResponseDocument;
 public class CategorizationTest {
 
     static StringBuilder sb = new StringBuilder();
-
+    
+    // Sample text to be analyzed
     static {
         sb.append("Michael Jordan was one of the best basketball players of all time.");
-        sb.append("Scoring was Jordan's stand-out skill, but he still holds a defensive NBA record, with eight steals in a half.");  // Sample text to be analyzed
+        sb.append("Scoring was Jordan's stand-out skill, but he still holds a defensive NBA record, with eight steals in a half.");  
     }
 
     public static String getSampleText() {
@@ -119,8 +121,8 @@ public class CategorizationTest {
         return new Authentication(authenticator);
     }
     
-    //Method for selecting the resource to be call by the API; as today, the API provides the IPTC classifier only, and five languages such as English, 
-    //French, Spanish, German and Italian
+    //Method for selecting the resource to be call by the API; as today, the API provides the IPTC classifier only, and 
+    //five languages such as English, French, Spanish, German and Italian
     public static Categorizer createCategorizer() throws Exception {
         return new Categorizer(CategorizerConfig.builder()
                                                 .withVersion(API.Versions.V1)
