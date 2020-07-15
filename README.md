@@ -1,18 +1,20 @@
 # nlapi-java
 
-Java SDK for the [expert.ai](https://developer.expert.ai/) Natural Language API.
-
-See for yourself what expert.ai’s Natural Language API can do for your application by [test-driving our demo](https://try.expert.ai/).
+Official Java Client for the [expert.ai](https://developer.expert.ai/) Natural Language API. Leverage Natural Language technology language processing from your Java apps.
+Check out what expert.ai’s Natural Language API can do for your application by [our live demo](https://try.expert.ai/).
 
 ## Build From Source
+```bash
+git clone git@github.com:therealexpertai/nlapi-java.git
+cd nlapi-java
+./gradlew build     # requires gradle (download from https://gradle.org/releases/)
+```
 
-1. `git clone git@github.com:therealexpertai/nlapi-java.git`
-2. `cd nlapi-java`
-3. `./gradlew build` (Windows: `gradlew.bat build`)
-
-## Usage
+## Usage examples
+Here are some examples of how to use the library in order to leverage the Natural Language API:
 
 ### Document Analisys
+You can get the result of the deep linguistic analysis applied to your text as follows
 
 ```java
 
@@ -30,18 +32,20 @@ public class AnalisysTest {
 
     static {
         sb.append("Michael Jordan was one of the best basketball players of all time.");
-        sb.append("Scoring was Jordan's stand-out skill, but he still holds a defensive NBA record, with eight steals in a half.");
+        sb.append("Scoring was Jordan's stand-out skill, but he still holds a defensive NBA record, with eight steals in a half.");  # Sample text to be analyzed
     }
 
     public static String getSampleText() {
         return sb.toString();
     }
-
+    
+    //Method for setting the authentication credentials - set your credentials here.
     public static Authentication createAuthentication() throws Exception {
-        Authenticator authenticator = new BasicAuthenticator(new Credential("USERNAME", "PASSWORD"));
+        Authenticator authenticator = new BasicAuthenticator(new Credential("PUT HERE YOUR USERNAME", " PUT HERE YOUR PASSWORD"));
         return new Authentication(authenticator);
     }
 
+    //Method for selecting the resource to be call by the API; as today, the API provides the standard context only, and five languages such as English, French, Spanish, German and Italian
     public static Analyzer createAnalyzer() throws Exception {
         return new Analyzer(AnalyzerConfig.builder()
                                           .withVersion(API.Versions.V1)
@@ -76,6 +80,7 @@ public class AnalisysTest {
 ```
 
 ### Document Classification
+or to run a document classification with respect to the [IPTC Media Topic taxonomy](https://iptc.org/standards/media-topics/)
 
 ```java
 
@@ -132,4 +137,9 @@ public class CategorizationTest {
 ```
 ## Documentation
 
-The ResponseDocument class provides object-based representation of the API JSON response as described in the documentation portal at (https://docs.expert.ai/nlapi/v1/).
+The ResponseDocument class provides an object-based representation of the API JSON response as described in the [documentation portal](https://docs.expert.ai/nlapi/v1/):
+* disambiguation Response 
+* 
+* 
+* 
+* 
