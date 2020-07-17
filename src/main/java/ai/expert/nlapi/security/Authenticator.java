@@ -18,7 +18,7 @@ package ai.expert.nlapi.security;
 
 public interface Authenticator {
 
-    String BASE_URL = "https://staging-developer.expert.ai";
+    String BASE_URL = "https://developer.expert.ai";
 
     String authenticate();
 }
