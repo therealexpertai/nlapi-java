@@ -1,6 +1,6 @@
 # expert.ai Natural Language API for Java
 
-Official Java Client for the [expert.ai](https://developer.expert.ai/) Natural Language API. Leverage Natural Language technology from your Java apps.
+Java Client for the [expert.ai](https://developer.expert.ai/) Natural Language API. Leverage Natural Language technology from your Java apps.
 Check out what expert.ai’s Natural Language API can do for your application by [our live demo](https://try.expert.ai/).
 
 ## Build From Source
