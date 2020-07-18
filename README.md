@@ -1,7 +1,9 @@
 # expert.ai Natural Language API for Java
 
 Java Client for the [expert.ai](https://developer.expert.ai/) Natural Language API. Leverage Natural Language technology from your Java apps.
+
 Check out what expert.ai’s Natural Language API can do for your application by [our live demo](https://try.expert.ai/).
+
 
 ## Build From Source
 
@@ -12,10 +14,12 @@ cd nlapi-java
 ./gradlew build     # requires gradle (download from https://gradle.org/releases/)
 ```
 
+
 ## Usage examples
 
 
 Here are some examples of how to use the library in order to leverage the Natural Language API:
+
 
 ### Document Analisys
 
@@ -91,6 +95,7 @@ public class AnalisysTest {
 }
 
 ```
+
 
 ### Document Classification
 
