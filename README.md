@@ -11,7 +11,7 @@ Check out what expert.ai’s Natural Language API can do for your application by
 ```bash
 git clone git@github.com:therealexpertai/nlapi-java.git
 cd nlapi-java
-./gradlew build     # requires gradle (download from https://gradle.org/releases/)
+./gradlew build    
 ```
 
 
