@@ -1,9 +1,11 @@
-# nlapi-java
+# expert.ai Natural Language API for Java
 
-Official Java Client for the [expert.ai](https://developer.expert.ai/) Natural Language API. Leverage Natural Language technology language processing from your Java apps.
+Official Java Client for the [expert.ai](https://developer.expert.ai/) Natural Language API. Leverage Natural Language technology from your Java apps.
 Check out what expert.ai’s Natural Language API can do for your application by [our live demo](https://try.expert.ai/).
 
 ## Build From Source
+
+
 ```bash
 git clone git@github.com:therealexpertai/nlapi-java.git
 cd nlapi-java
@@ -11,9 +13,13 @@ cd nlapi-java
 ```
 
 ## Usage examples
+
+
 Here are some examples of how to use the library in order to leverage the Natural Language API:
 
 ### Document Analisys
+
+
 You can get the result of the deep linguistic analysis applied to your text as follows
 
 ```java
@@ -87,6 +93,8 @@ public class AnalisysTest {
 ```
 
 ### Document Classification
+
+
 or to run a document classification with respect to the [IPTC Media Topic taxonomy](https://iptc.org/standards/media-topics/)
 
 ```java
