@@ -21,7 +21,7 @@ cd nlapi-java
 Here are some examples of how to use the library in order to leverage the Natural Language API:
 
 
-### Document Analisys
+### Document Analysis
 
 
 You can get the result of the deep linguistic analysis applied to your text as follows
@@ -36,7 +36,7 @@ import ai.expert.nlapi.v1.API;
 import ai.expert.nlapi.v1.Analyzer;
 import ai.expert.nlapi.v1.AnalyzerConfig;
 
-public class AnalisysTest {
+public class AnalysisTest {
 
     static StringBuilder sb = new StringBuilder();
 
@@ -72,19 +72,19 @@ public class AnalisysTest {
             Analyzer analyzer = createAnalyzer();
             ResponseDocument response = null;
             
-            // Disambiguation Analisys
+            // Disambiguation Analysis
             response = analyzer.disambiguation(getSampleText());
             response.prettyPrint();
 
-            // Relevants Analisys
+            // Relevants Analysis
             response = analyzer.relevants(getSampleText());
             response.prettyPrint();
 
-            // Entities Analisys
+            // Entities Analysis
             response = analyzer.entities(getSampleText());
             response.prettyPrint();
             
-            // Full Analisys
+            // Full Analysis
             response = analyzer.analyze(getSampleText());
             response.prettyPrint();
         }
