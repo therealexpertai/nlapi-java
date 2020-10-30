@@ -10,6 +10,9 @@ jobs:
     name: Create Release
     runs-on: ubuntu-latest
     steps:
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Set up JDK 8
@@ -35,6 +38,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create-release.outputs.upload_url }}
-          asset_path: ./build/distributions/nlapi-java-sdk-${{ github.ref }}.zip
-          asset_name: nlapi-java-sdk-${{ github.ref }}.zip
+          asset_path: ./build/distributions/nlapi-java-sdk-${{ steps.get-version.outputs.VERSION }}.zip
+          asset_name: nlapi-java-sdk-${{ steps.get-version.outputs.VERSION }}.zip
           asset_content_type: application/zip
