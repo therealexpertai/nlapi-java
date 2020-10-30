@@ -16,6 +16,8 @@
 
 package ai.expert.nlapi.security;
 
+import ai.expert.nlapi.exceptions.NLApiException;
+
 public class Authentication {
 
     private final Authenticator authenticator;
@@ -37,7 +39,12 @@ public class Authentication {
         return JWT;
     }
 
-    public String refresh() {
+
+    public void setJWT(String JWT) {
+        this.JWT = JWT;
+    }
+
+    public String refresh() throws NLApiException {
         JWT = authenticator.authenticate();
         return JWT;
     }

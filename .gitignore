@@ -11,14 +11,15 @@
 # Intellij IDEA
 /build
 /out
-.idea/workspace.xml
-.idea/uiDesigner.xml
-.idea/markdown-exported-files.xml
-.idea/markdown-navigator
-.idea/libraries/*
-.idea/libraries/*
+
+/.idea
+!.idea/codeStyles
+!.idea/copyright
 
 # Eclipse
 .classpath
 .projects
 .settings
+/.apt_generated/
+/.apt_generated_tests/
+/.project

@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2020 original authors
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Versions 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -14,13 +14,18 @@
  * limitations under the License.
  */
 
-package ai.expert.nlapi.security;
+package ai.expert.nlapi.v2;
 
-import ai.expert.nlapi.exceptions.NLApiException;
+import ai.expert.nlapi.security.Authentication;
+import lombok.Builder;
+import lombok.Value;
 
-public interface Authenticator {
+@Value
+@Builder(setterPrefix = "with")
+public class CategorizerConfig {
 
-    String BASE_URL = "https://developer.expert.ai";
-
-    String authenticate() throws NLApiException;
+    API.Versions version;
+    String taxonomy;
+    API.Languages language;
+    Authentication authentication;
 }

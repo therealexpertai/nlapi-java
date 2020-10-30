@@ -1,0 +1,132 @@
+{
+  "overall": -15.0,
+  "negativity": -15.1,
+  "positivity": 0.1,
+  "items": [
+    {
+      "lemma": "",
+      "syncon": -1,
+      "sentiment": -4.599999,
+      "items": [
+        {
+          "lemma": "allies",
+          "syncon": 41363,
+          "sentiment": 3.5
+        },
+        {
+          "lemma": "attack",
+          "syncon": 165406,
+          "sentiment": -3.5
+        },
+        {
+          "lemma": "be to blame",
+          "syncon": 170925,
+          "sentiment": -8.5
+        },
+        {
+          "lemma": "but",
+          "syncon": 160458,
+          "sentiment": -1.0
+        },
+        {
+          "lemma": "crisis",
+          "syncon": 59456,
+          "sentiment": -3.5
+        },
+        {
+          "lemma": "go to war",
+          "syncon": 66821,
+          "sentiment": -14.0
+        },
+        {
+          "lemma": "pressure",
+          "syncon": 24004,
+          "sentiment": -3.5
+        },
+        {
+          "lemma": "strike",
+          "syncon": 4828,
+          "sentiment": -3.5
+        }
+      ]
+    },
+    {
+      "lemma": "Iran",
+      "syncon": 38348,
+      "sentiment": -3.5,
+      "items": [
+        {
+          "lemma": "deny",
+          "syncon": 65815,
+          "sentiment": -3.5
+        }
+      ]
+    },
+    {
+      "lemma": "Salman",
+      "syncon": -1,
+      "vsyn": {
+        "id": -436163,
+        "parent": 73282
+      },
+      "sentiment": -3.5,
+      "items": [
+        {
+          "lemma": "threat",
+          "syncon": 59667,
+          "sentiment": -3.5,
+          "items": [
+            {
+              "lemma": "confront",
+              "syncon": 65803,
+              "sentiment": -3.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lemma": "crisis",
+      "syncon": 59456,
+      "sentiment": 0.2,
+      "items": [
+        {
+          "lemma": "address",
+          "syncon": 71669,
+          "sentiment": 0.2,
+          "items": [
+            {
+              "lemma": "collectively",
+              "syncon": 158314,
+              "sentiment": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lemma": "level",
+      "syncon": 23734,
+      "sentiment": -5.0,
+      "items": [
+        {
+          "lemma": "address",
+          "syncon": 83370,
+          "sentiment": -5.0
+        }
+      ]
+    },
+    {
+      "lemma": "threat",
+      "syncon": 59667,
+      "sentiment": -3.5,
+      "items": [
+        {
+          "lemma": "economic stability",
+          "syncon": 235411,
+          "sentiment": -3.5
+        }
+      ]
+    }
+  ]
+}

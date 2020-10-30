@@ -14,30 +14,22 @@
  * limitations under the License.
  */
 
-package ai.expert.nlapi.security;
+package ai.expert.nlapi.v2.model;
 
-import ai.expert.nlapi.utils.StringUtils;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.SneakyThrows;
-import lombok.Value;
+import ai.expert.nlapi.v2.API;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Value
-public class Credential {
+import java.util.List;
 
-    @JsonProperty
-    String username;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class CategorizeDocument {
 
-    @JsonProperty
-    String password;
-
-    public boolean isValid() {
-        if(StringUtils.isBlank(username)) {return false;}
-        return !StringUtils.isBlank(password);
-    }
-
-    @SneakyThrows
-    public String toJSON() {
-        return new ObjectMapper().writeValueAsString(this);
-    }
+    private String content;
+    private API.Languages language;
+    private String version;
+    private List<Category> categories;
 }

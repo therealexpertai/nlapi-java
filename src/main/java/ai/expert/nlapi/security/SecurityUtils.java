@@ -18,6 +18,14 @@ package ai.expert.nlapi.security;
 
 public class SecurityUtils {
 
+    // keys used for SystemPropertyCredentialsProvider
+    public static final String USER_ACCESS_KEY_PROP = "eai.username";
+    public static final String PASSWORD_ACCESS_KEY_PROP = "eai.password";
+
+    // keys used for EnvironmentVariablesCredentialsProvider
+    public static final String USER_ACCESS_KEY_ENV = "EAI_USERNAME";
+    public static final String PASSWORD_ACCESS_KEY_ENV = "EAI_PASSWORD";
+
     public static String bearerOf(String JWT) {
         return String.format("Bearer %s", JWT);
     }

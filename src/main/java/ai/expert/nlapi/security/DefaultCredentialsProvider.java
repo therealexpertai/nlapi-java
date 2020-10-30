@@ -16,28 +16,24 @@
 
 package ai.expert.nlapi.security;
 
-import ai.expert.nlapi.utils.StringUtils;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.SneakyThrows;
-import lombok.Value;
 
-@Value
-public class Credential {
+public class DefaultCredentialsProvider extends CredentialsProvider {
 
-    @JsonProperty
-    String username;
+    private CredentialsProvider providerChain;
 
-    @JsonProperty
-    String password;
-
-    public boolean isValid() {
-        if(StringUtils.isBlank(username)) {return false;}
-        return !StringUtils.isBlank(password);
+    public DefaultCredentialsProvider() {
+        providerChain = null;
+        init();
     }
 
-    @SneakyThrows
-    public String toJSON() {
-        return new ObjectMapper().writeValueAsString(this);
+    private void init() {
+        // set the chain of CredentialsProvider
+        providerChain = new EnvironmentVariablesCredentialsProvider();
+        providerChain.setNextCredentialsProvider(new SystemPropertyCredentialsProvider());
+    }
+
+    public Credential getCredentials() {
+        // get credentials using the chain of CredentialsProvider
+        return providerChain.solveCredentials();
     }
 }

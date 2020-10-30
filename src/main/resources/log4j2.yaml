@@ -1,0 +1,42 @@
+Configutation:
+  name: Default
+  Properties:
+    Property:
+      name: log-path
+      value: "build/logs"
+  Appenders:
+    Console:
+      name: Console_Appender
+      target: SYSTEM_OUT
+      PatternLayout:
+        pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
+    File:
+      name: File_Appender
+      fileName: ${log-path}/nlapi_expert_ai.log
+      PatternLayout:
+        pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
+    RollingFile:
+      - name: RollingFile_Appender
+        fileName: ${log-path}/nlapi_expert_ai.rolling.log
+        filePattern: "logs/archive/nlapi_expert_ai.rolling.log.%d{yyyy-MM-dd-hh-mm}.gz"
+        PatternLayout:
+          pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
+        Policies:
+          SizeBasedTriggeringPolicy:
+            size: 5 MB
+        DefaultRollOverStrategy:
+          max: 30
+  Loggers:
+      Root:
+        level: error
+        AppenderRef:
+          - ref: Console_Appender
+            level: error
+      Logger:
+        - name: ai.expert
+          level: error
+          AppenderRef:
+            - ref: File_Appender
+              level: error
+            - ref: RollingFile_Appender
+              level: error

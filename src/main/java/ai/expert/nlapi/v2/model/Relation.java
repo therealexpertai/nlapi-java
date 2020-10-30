@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2020 original authors
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Versions 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -14,13 +14,19 @@
  * limitations under the License.
  */
 
-package ai.expert.nlapi.security;
+package ai.expert.nlapi.v2.model;
 
-import ai.expert.nlapi.exceptions.NLApiException;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public interface Authenticator {
+import java.util.List;
 
-    String BASE_URL = "https://developer.expert.ai";
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Relation {
 
-    String authenticate() throws NLApiException;
+    private RelationVerb verb;
+    private List<RelatedItem> related;
 }

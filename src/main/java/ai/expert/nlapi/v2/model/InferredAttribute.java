@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2020 original authors
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Versions 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -14,13 +14,23 @@
  * limitations under the License.
  */
 
-package ai.expert.nlapi.security;
 
-import ai.expert.nlapi.exceptions.NLApiException;
+package ai.expert.nlapi.v2.model;
 
-public interface Authenticator {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-    String BASE_URL = "https://developer.expert.ai";
+import java.util.List;
 
-    String authenticate() throws NLApiException;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class InferredAttribute {
+
+    private String attribute;
+    private String lemma;
+    private Long syncon;
+    private String type;
+    private List<InferredAttribute> attributes;
 }

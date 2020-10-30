@@ -13,8 +13,8 @@ plugins {
 }
 
 group = 'expert.ai'
-version = '1.0.0-RC.1'
-description = 'Natural Language API expert.ai Java SDK v1'
+version = '2.0.0'
+description = 'Natural Language API expert.ai Java SDK v2'
 
 publishing {
     publications {
@@ -33,16 +33,38 @@ repositories {
 dependencies {
     annotationProcessor("org.projectlombok:lombok:1.18.12")
     implementation('com.fasterxml.jackson.core:jackson-databind:2.11.1')
+    implementation('com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.11.1')
     implementation('com.konghq:unirest-java:3.8.06')
     implementation('com.konghq:unirest-objectmapper-jackson:3.8.06')
+    implementation('org.apache.logging.log4j:log4j-api:2.13.3')
     implementation('org.apache.logging.log4j:log4j-core:2.13.3')
     compileOnly('org.projectlombok:lombok:1.18.12')
     testImplementation('junit:junit:4.12')
 }
 
+test {
+    useJUnit()
+    minHeapSize = "512m"
+    maxHeapSize = "1G"
+    failFast = true
+    reports.html.enabled = true
+    // show standard out and standard error of the test JVM(s) on the console
+    testLogging.showStandardStreams = true
+    filter {
+        //include basic tests
+        includeTestsMatching "*BasicTest"
+        //include release tests
+        includeTestsMatching "*ReleaseTest"
+    }
+}
+
 java {
     sourceCompatibility = JavaVersion.toVersion('1.8')
     targetCompatibility = JavaVersion.toVersion('1.8')
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
 }
 
 task copyLicence(type: Copy) {
@@ -56,8 +78,4 @@ jar {
     manifest {
         attributes('Implementation-Title': project.name, 'Implementation-Version': project.version)
     }
-}
-
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
 }
