@@ -418,26 +418,26 @@ public class TaxonomiesTest {
 
 ## API capabilities
 
-These are all the analysis and classification capabilities of the API.
+The API analysis and classification capabilities are listed below:
 
 ### Document Analysis
 
 
-* [Deep linguistic analysis](https://docs.expert.ai/nlapi/v1/reference/output/linguistic-analysis/)	
-* [Keyphrase extraction](https://docs.expert.ai/nlapi/v1/reference/output/keyphrase-extraction/)	
-* [Named entities recognition](https://docs.expert.ai/nlapi/v1/reference/output/entity-recognition/)
-* [Full document analysis](https://docs.expert.ai/nlapi/v1/reference/output/full-analysis/)
+* [Deep linguistic analysis](https://docs.expert.ai/nlapi/v2/reference/output/linguistic-analysis/)	
+* [Keyphrase extraction](https://docs.expert.ai/nlapi/v2/reference/output/keyphrase-extraction/)	
+* [Named entities recognition](https://docs.expert.ai/nlapi/v2/reference/output/entity-recognition/)
+* [Full document analysis](https://docs.expert.ai/nlapi/v2/reference/output/full-analysis/)
 
 
 ### Document Classification
 
 
-* [IPTC Media Topics classification](https://docs.expert.ai/nlapi/v1/reference/output/classification/)
+* [IPTC Media Topics and GeoTax classification](https://docs.expert.ai/nlapi/v2/reference/output/classification/)
 
 ## Notes
 
 The project makes use of [Lombok Project](https://projectlombok.org/). 
 
-Project Lombok is a java library that automatically plugs into your editor. 
+Project Lombok is a Java library that automatically plugs into your editor. 
 In case you use Jetbrains IntelliJ IDEA editor see this link [https://projectlombok.org/setup/intellij](https://projectlombok.org/setup/intellij). 
 For Eclipse editor check this link [https://projectlombok.org/setup/eclipse](https://projectlombok.org/setup/eclipse) for installing Lombok Project.
