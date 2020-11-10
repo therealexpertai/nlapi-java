@@ -20,6 +20,8 @@ package ai.expert.nlapi.v2;
 public class API {
 
     public static final String AUTHORITY = "https://nlapi.expert.ai";
+    public static final String EDGE_AUTHORITY = "https://edgeapi.expert.ai";
+    public static final String DEFAULT_EDGE_HOST = "http://127.0.0.1:6699";
 
     public enum Versions {
 

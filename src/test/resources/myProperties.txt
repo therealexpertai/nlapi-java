@@ -1,2 +1,3 @@
 eai.username=
 eai.password=
+eai.token=

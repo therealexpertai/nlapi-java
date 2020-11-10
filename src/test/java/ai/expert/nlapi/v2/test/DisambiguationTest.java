@@ -18,13 +18,13 @@ package ai.expert.nlapi.v2.test;
 
 import ai.expert.nlapi.security.Authentication;
 import ai.expert.nlapi.v2.API;
-import ai.expert.nlapi.v2.Analyzer;
-import ai.expert.nlapi.v2.AnalyzerConfig;
+import ai.expert.nlapi.v2.cloud.Analyzer;
+import ai.expert.nlapi.v2.cloud.AnalyzerConfig;
 import ai.expert.nlapi.v2.message.AnalyzeResponse;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class DisambiguationTest {
 
@@ -75,28 +75,28 @@ public class DisambiguationTest {
             analysis.prettyPrint();
 
             // assert there is the data passed as input
-            assertTrue(analysis.getData() != null);
-            assertTrue(analysis.getData().getContent() != null);
-            assertTrue(analysis.getData().getLanguage() == API.Languages.en);
+            assertNotNull(analysis.getData());
+            assertNotNull(analysis.getData().getContent());
+            assertSame(analysis.getData().getLanguage(), API.Languages.en);
 
             // assert there are all nl expert ai information 
-            assertTrue(analysis.getData().getKnowledge() != null);
-            assertTrue(analysis.getData().getParagraphs() != null);
-            assertTrue(analysis.getData().getPhrases() != null);
-            assertTrue(analysis.getData().getSentences() != null);
-            assertTrue(analysis.getData().getTokens() != null);
+            assertNotNull(analysis.getData().getKnowledge());
+            assertNotNull(analysis.getData().getParagraphs());
+            assertNotNull(analysis.getData().getPhrases());
+            assertNotNull(analysis.getData().getSentences());
+            assertNotNull(analysis.getData().getTokens());
 
-            assertTrue(analysis.getData().getEntities() == null);
-            assertTrue(analysis.getData().getTopics() == null);
+            assertNull(analysis.getData().getEntities());
+            assertNull(analysis.getData().getTopics());
 
-            assertTrue(analysis.getData().getMainLemmas() == null);
-            assertTrue(analysis.getData().getMainSyncons() == null);
-            assertTrue(analysis.getData().getMainPhrases() == null);
-            assertTrue(analysis.getData().getMainSentences() == null);
+            assertNull(analysis.getData().getMainLemmas());
+            assertNull(analysis.getData().getMainSyncons());
+            assertNull(analysis.getData().getMainPhrases());
+            assertNull(analysis.getData().getMainSentences());
         }
         catch(Exception ex) {
             ex.printStackTrace();
-            assertTrue(false);
+            fail();
         }
     }
 }

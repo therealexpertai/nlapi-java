@@ -18,13 +18,13 @@ package ai.expert.nlapi.v2.test;
 
 import ai.expert.nlapi.security.Authentication;
 import ai.expert.nlapi.v2.API;
-import ai.expert.nlapi.v2.Categorizer;
-import ai.expert.nlapi.v2.CategorizerConfig;
+import ai.expert.nlapi.v2.cloud.Categorizer;
+import ai.expert.nlapi.v2.cloud.CategorizerConfig;
 import ai.expert.nlapi.v2.message.CategorizeResponse;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class CategorizationTest {
 
@@ -82,16 +82,16 @@ public class CategorizationTest {
             categorization.prettyPrint();
 
             // assert there is the data passed as input
-            assertTrue(categorization.getData() != null);
-            assertTrue(categorization.getData().getContent() != null);
-            assertTrue(categorization.getData().getLanguage() == API.Languages.en);
+            assertNotNull(categorization.getData());
+            assertNotNull(categorization.getData().getContent());
+            assertSame(categorization.getData().getLanguage(), API.Languages.en);
 
             // assert there are categories
-            assertTrue(categorization.getData().getCategories() != null);
+            assertNotNull(categorization.getData().getCategories());
         }
         catch(Exception ex) {
             ex.printStackTrace();
-            assertTrue(false);
+            fail();
         }
     }
 
@@ -111,16 +111,16 @@ public class CategorizationTest {
             categorization.prettyPrint();
 
             // assert there is the data passed as input
-            assertTrue(categorization.getData() != null);
-            assertTrue(categorization.getData().getContent() != null);
-            assertTrue(categorization.getData().getLanguage() == API.Languages.en);
+            assertNotNull(categorization.getData());
+            assertNotNull(categorization.getData().getContent());
+            assertSame(categorization.getData().getLanguage(), API.Languages.en);
 
             // assert there are categories
-            assertTrue(categorization.getData().getCategories() != null);
+            assertNotNull(categorization.getData().getCategories());
         }
         catch(Exception ex) {
             ex.printStackTrace();
-            assertTrue(false);
+            fail();
         }
     }
 }

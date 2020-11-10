@@ -33,7 +33,7 @@ public class APIUtils {
 
     public static <T> T fromJSON(String json, Class<T> valueType) throws NLApiException {
 
-        T response = null;
+        T response;
 
         try {
             ObjectMapper om = new ObjectMapper();

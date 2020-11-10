@@ -18,8 +18,8 @@ package ai.expert.nlapi.v2.test;
 
 import ai.expert.nlapi.security.Authentication;
 import ai.expert.nlapi.v2.API;
-import ai.expert.nlapi.v2.Analyzer;
-import ai.expert.nlapi.v2.AnalyzerConfig;
+import ai.expert.nlapi.v2.cloud.Analyzer;
+import ai.expert.nlapi.v2.cloud.AnalyzerConfig;
 import ai.expert.nlapi.v2.message.AnalyzeResponse;
 import ai.expert.nlapi.v2.model.POSTag;
 import ai.expert.nlapi.v2.model.Token;
@@ -28,7 +28,7 @@ import org.junit.Test;
 
 import java.nio.charset.StandardCharsets;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class FullAnalysisParsingTest {
 
@@ -70,12 +70,12 @@ public class FullAnalysisParsingTest {
             analysis.prettyPrint();
 
             // assert there is the data passed as input
-            assertTrue(analysis.getData() != null);
-            assertTrue(analysis.getData().getContent() != null);
-            assertTrue(analysis.getData().getLanguage() == API.Languages.en);
+            assertNotNull(analysis.getData());
+            assertNotNull(analysis.getData().getContent());
+            assertSame(analysis.getData().getLanguage(), API.Languages.en);
 
             // assert there are all nl expert ai information
-            assertTrue(analysis.getData().getTokens() != null);
+            assertNotNull(analysis.getData().getTokens());
 
             /* check if token with POSTag.X exists
              * {
@@ -103,6 +103,7 @@ public class FullAnalysisParsingTest {
             for(Token t : analysis.getData().getTokens()) {
                 if(t.getPos() != null && t.getPos() == POSTag.X) {
                     found_POSTag_X = true;
+                    break;
                 }
             }
             assertTrue(found_POSTag_X);
@@ -110,7 +111,7 @@ public class FullAnalysisParsingTest {
         }
         catch(Exception ex) {
             ex.printStackTrace();
-            assertTrue(false);
+            fail();
         }
     }
 }

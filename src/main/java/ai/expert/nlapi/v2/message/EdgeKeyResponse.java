@@ -14,35 +14,32 @@
  * limitations under the License.
  */
 
-package ai.expert.nlapi.security;
+package ai.expert.nlapi.v2.message;
 
-import ai.expert.nlapi.utils.StringUtils;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
-import lombok.Value;
 
-@Value
-public class Credential {
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class EdgeKeyResponse {
 
-    @JsonProperty
-    String username;
-
-    @JsonProperty
-    String password;
-
-    String token;
-
-    public boolean isValid() {
-        if (!StringUtils.isBlank(token)) {
-            return true;
-        }
-        if(StringUtils.isBlank(username)) {return false;}
-        return !StringUtils.isBlank(password);
-    }
+    @JsonProperty("key")
+    private String key;
 
     @SneakyThrows
     public String toJSON() {
-        return new ObjectMapper().writeValueAsString(this);
+        ObjectMapper om = new ObjectMapper();
+        return om.writeValueAsString(this);
+    }
+
+    @SneakyThrows
+    public void prettyPrint() {
+        System.out.println(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this));
     }
 }

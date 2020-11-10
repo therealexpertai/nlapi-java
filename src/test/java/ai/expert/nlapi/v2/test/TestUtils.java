@@ -68,7 +68,7 @@ public class TestUtils {
     }
 
     public static Authentication createFakeAuthentication() throws Exception {
-        Authenticator authenticator = new BasicAuthenticator(new Credential("FAKE", "FAKE"));
+        Authenticator authenticator = new BasicAuthenticator(new Credential("FAKE", "FAKE", null));
         return new Authentication(authenticator);
     }
 }

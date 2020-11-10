@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 public class CredentialsProviderTester {
 
@@ -82,7 +83,7 @@ public class CredentialsProviderTester {
 
         if(credential == null) {
             System.out.println("KO. No credentials are not set");
-            assertTrue(false);
+            fail();
         }
         else {
             System.out.println("OK! Credentials are set");

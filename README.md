@@ -73,8 +73,8 @@ import ai.expert.nlapi.security.Authenticator;
 import ai.expert.nlapi.security.BasicAuthenticator;
 import ai.expert.nlapi.security.Credential;
 import ai.expert.nlapi.v2.API;
-import ai.expert.nlapi.v2.Analyzer;
-import ai.expert.nlapi.v2.AnalyzerConfig;
+import ai.expert.nlapi.v2.cloud.Analyzer;
+import ai.expert.nlapi.v2.cloud.AnalyzerConfig;
 import ai.expert.nlapi.v2.message.AnalyzeResponse;
 
 public class AnalisysTest {
@@ -156,8 +156,8 @@ import ai.expert.nlapi.security.Authenticator;
 import ai.expert.nlapi.security.BasicAuthenticator;
 import ai.expert.nlapi.security.Credential;
 import ai.expert.nlapi.v2.API;
-import ai.expert.nlapi.v2.Analyzer;
-import ai.expert.nlapi.v2.AnalyzerConfig;
+import ai.expert.nlapi.v2.cloud.Analyzer;
+import ai.expert.nlapi.v2.cloud.AnalyzerConfig;
 
 public class ContextsTest {
 
@@ -205,8 +205,8 @@ import ai.expert.nlapi.security.Authenticator;
 import ai.expert.nlapi.security.BasicAuthenticator;
 import ai.expert.nlapi.security.Credential;
 import ai.expert.nlapi.v2.API;
-import ai.expert.nlapi.v2.Categorizer;
-import ai.expert.nlapi.v2.CategorizerConfig;
+import ai.expert.nlapi.v2.cloud.Categorizer;
+import ai.expert.nlapi.v2.cloud.CategorizerConfig;
 import ai.expert.nlapi.v2.message.CategorizeResponse;
 
 public class CategorizationIPTCTest {
@@ -269,8 +269,8 @@ import ai.expert.nlapi.security.Authenticator;
 import ai.expert.nlapi.security.BasicAuthenticator;
 import ai.expert.nlapi.security.Credential;
 import ai.expert.nlapi.v2.API;
-import ai.expert.nlapi.v2.Categorizer;
-import ai.expert.nlapi.v2.CategorizerConfig;
+import ai.expert.nlapi.v2.cloud.Categorizer;
+import ai.expert.nlapi.v2.cloud.CategorizerConfig;
 import ai.expert.nlapi.v2.message.CategorizeResponse;
 
 public class CategorizationGeoTAXTest {
@@ -336,8 +336,8 @@ import ai.expert.nlapi.security.Authenticator;
 import ai.expert.nlapi.security.BasicAuthenticator;
 import ai.expert.nlapi.security.Credential;
 import ai.expert.nlapi.v2.API;
-import ai.expert.nlapi.v2.Analyzer;
-import ai.expert.nlapi.v2.AnalyzerConfig;
+import ai.expert.nlapi.v2.cloud.Analyzer;
+import ai.expert.nlapi.v2.cloud.AnalyzerConfig;
 
 public class TaxonomiesTest {
 
@@ -381,8 +381,8 @@ import ai.expert.nlapi.security.Authenticator;
 import ai.expert.nlapi.security.BasicAuthenticator;
 import ai.expert.nlapi.security.Credential;
 import ai.expert.nlapi.v2.API;
-import ai.expert.nlapi.v2.Analyzer;
-import ai.expert.nlapi.v2.AnalyzerConfig;
+import ai.expert.nlapi.v2.cloud.Analyzer;
+import ai.expert.nlapi.v2.cloud.AnalyzerConfig;
 
 public class TaxonomiesTest {
 

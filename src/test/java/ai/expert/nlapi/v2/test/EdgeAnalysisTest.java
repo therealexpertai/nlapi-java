@@ -18,15 +18,26 @@ package ai.expert.nlapi.v2.test;
 
 import ai.expert.nlapi.security.Authentication;
 import ai.expert.nlapi.v2.API;
-import ai.expert.nlapi.v2.cloud.Analyzer;
-import ai.expert.nlapi.v2.cloud.AnalyzerConfig;
+import ai.expert.nlapi.v2.edge.Analyzer;
+import ai.expert.nlapi.v2.edge.AnalyzerConfig;
+import ai.expert.nlapi.v2.edge.Model;
+import ai.expert.nlapi.v2.edge.ModelConfig;
 import ai.expert.nlapi.v2.message.AnalyzeResponse;
+import ai.expert.nlapi.v2.message.TaxonomyModelResponse;
+import ai.expert.nlapi.v2.message.TemplatesModelResponse;
+import ai.expert.nlapi.v2.model.Category;
+import ai.expert.nlapi.v2.model.Extraction;
+import ai.expert.nlapi.v2.model.Taxonomy;
+import ai.expert.nlapi.v2.model.TemplateNamespace;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class RelationsTest {
+public class EdgeAnalysisTest {
 
     static StringBuilder sb = new StringBuilder();
 
@@ -37,10 +48,16 @@ public class RelationsTest {
     public static Analyzer createAnalyzer(Authentication authentication) throws Exception {
         return new Analyzer(AnalyzerConfig.builder()
                                           .withVersion(API.Versions.V2)
-                                          .withContext("standard")
-                                          .withLanguage(API.Languages.en)
+                                          .withHost(API.DEFAULT_EDGE_HOST)
                                           .withAuthentication(authentication)
                                           .build());
+    }
+
+    public static Model createModel() throws Exception {
+        return new Model(ModelConfig.builder()
+                         .withVersion(API.Versions.V2)
+                         .withHost(API.DEFAULT_EDGE_HOST)
+                         .build());
     }
 
     @Before
@@ -48,8 +65,10 @@ public class RelationsTest {
         try {
             // load myProperties.txt file
             TestUtils.setPropertyFile("src/test/resources/myProperties.txt");
+
             // check number of call to avoid limit call rate error
             TestUtils.callRateCheck();
+
             // set text to be analyzed
             sb.append("Michael Jordan was one of the best basketball players of all time.");
             sb.append("Scoring was Jordan's stand-out skill, but he still holds a defensive NBA record, with eight steals in a half.");
@@ -59,8 +78,9 @@ public class RelationsTest {
         }
     }
 
-    @Test
-    public void testRelationsAnalysis() {
+    @Ignore
+    //@Test
+    public void testEdgeAnalysis() {
         try {
             // get authentication, if not exist it creates one
             Authentication authentication = TestUtils.getAuthentication();
@@ -68,8 +88,8 @@ public class RelationsTest {
             // create analyzer
             Analyzer analyzer = createAnalyzer(authentication);
 
-            // Relevants Analysis
-            AnalyzeResponse analysis = analyzer.relations(getSampleText());
+            // Full Analysis
+            AnalyzeResponse analysis = analyzer.analyze(getSampleText());
             analysis.prettyPrint();
 
             // assert there is the data passed as input
@@ -77,24 +97,36 @@ public class RelationsTest {
             assertNotNull(analysis.getData().getContent());
             assertSame(analysis.getData().getLanguage(), API.Languages.en);
 
-            // assert there are all nl expert ai information
+            // assert there are all nl expert ai information 
+            assertNotNull(analysis.getData().getEntities());
+            assertNotNull(analysis.getData().getTopics());
             assertNotNull(analysis.getData().getKnowledge());
-            assertNull(analysis.getData().getTopics());
 
-            assertNull(analysis.getData().getMainLemmas());
-            assertNull(analysis.getData().getMainSyncons());
-            assertNull(analysis.getData().getMainPhrases());
-            assertNull(analysis.getData().getMainSentences());
-
-            assertNull(analysis.getData().getEntities());
+            assertNotNull(analysis.getData().getMainLemmas());
+            assertNotNull(analysis.getData().getMainSyncons());
+            assertNotNull(analysis.getData().getMainPhrases());
+            assertNotNull(analysis.getData().getMainSentences());
 
             assertNotNull(analysis.getData().getParagraphs());
             assertNotNull(analysis.getData().getPhrases());
             assertNotNull(analysis.getData().getSentences());
             assertNotNull(analysis.getData().getTokens());
 
-            assertNull(analysis.getData().getSentiment());
-            assertNotNull(analysis.getData().getRelations());
+
+            // categories and extractions
+            // Full Analysis
+            analysis = analyzer.classification(getSampleText());
+            List<Category> categories = analysis.getData().getCategories();
+            analysis = analyzer.extraction(getSampleText());
+            List<Extraction> extractions = analysis.getData().getExtractions();
+
+            Model model = createModel();
+            TemplatesModelResponse templModelResponse = model.templates();
+            List<TemplateNamespace> templates = templModelResponse.getData();
+
+            TaxonomyModelResponse taxModelResponse = model.taxonomy();
+            List<Taxonomy> taxonomies = taxModelResponse.getData();
+
         }
         catch(Exception ex) {
             ex.printStackTrace();

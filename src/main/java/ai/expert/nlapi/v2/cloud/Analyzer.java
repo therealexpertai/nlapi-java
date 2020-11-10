@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2020 original authors
  *
- * Licensed under the Apache License, Versions 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
-package ai.expert.nlapi.v2;
+package ai.expert.nlapi.v2.cloud;
 
 import ai.expert.nlapi.exceptions.NLApiErrorCode;
 import ai.expert.nlapi.exceptions.NLApiException;
 import ai.expert.nlapi.security.Authentication;
 import ai.expert.nlapi.utils.APIUtils;
 import ai.expert.nlapi.utils.ObjectMapperAdapter;
+import ai.expert.nlapi.v2.API;
 import ai.expert.nlapi.v2.message.AnalysisRequest;
 import ai.expert.nlapi.v2.message.AnalyzeResponse;
 import ai.expert.nlapi.v2.model.Document;

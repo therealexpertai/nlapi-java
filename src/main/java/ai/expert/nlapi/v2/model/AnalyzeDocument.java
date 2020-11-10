@@ -49,4 +49,7 @@ public class AnalyzeDocument {
 
     private List<Relation> relations;
     private Sentiment sentiment;
+
+    private List<Category> categories;
+    private List<Extraction> extractions;
 }

@@ -30,21 +30,24 @@ public class EnvironmentVariablesCredentialsProvider extends CredentialsProvider
     public Credential getCredentials() {
 
         logger.debug("Getting Credentials from Environment Variables...");
-
         String username = StringUtils.trim(System.getenv(SecurityUtils.USER_ACCESS_KEY_ENV));
         String password = StringUtils.trim(System.getenv(SecurityUtils.PASSWORD_ACCESS_KEY_ENV));
+        String token = StringUtils.trim(System.getenv(SecurityUtils.TOKEN_ACCESS_KEY_ENV));
 
-        // check the variables, if not valid return null
-        if(username == null || username.isEmpty()) {
-            return null;
+        if (token==null || token.isEmpty()) {
+            // check the variables, if not valid return null
+            if(username == null || username.isEmpty()) {
+                return null;
+            }
+
+            if(password == null || password.isEmpty()) {
+                return null;
+            }
+            logger.info("Found Credentials from Environment Variables.");
+        } else {
+            logger.info("Found Token from Environment Variables.");
         }
 
-        if(password == null || password.isEmpty()) {
-            return null;
-        }
-
-        logger.info("Found Credentials from Environment Variables.");
-
-        return new Credential(username, password);
+        return new Credential(username, password, token);
     }
 }

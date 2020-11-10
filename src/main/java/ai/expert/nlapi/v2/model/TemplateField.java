@@ -14,18 +14,17 @@
  * limitations under the License.
  */
 
-package ai.expert.nlapi.v2;
+package ai.expert.nlapi.v2.model;
 
-import ai.expert.nlapi.security.Authentication;
-import lombok.Builder;
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Value
-@Builder(setterPrefix = "with")
-public class AnalyzerConfig {
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class TemplateField {
 
-    API.Versions version;
-    String context;
-    API.Languages language;
-    Authentication authentication;
+    private String name;
+    private String type;
 }

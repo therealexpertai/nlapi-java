@@ -32,17 +32,21 @@ public class SystemPropertyCredentialsProvider extends CredentialsProvider {
         logger.debug("Getting Credentials from System Property...");
         String username = StringUtils.trim(System.getProperty(SecurityUtils.USER_ACCESS_KEY_PROP));
         String password = StringUtils.trim(System.getProperty(SecurityUtils.PASSWORD_ACCESS_KEY_PROP));
+        String token = StringUtils.trim(System.getProperty(SecurityUtils.TOKEN_ACCESS_KEY_PROP));
 
-        // check the variables, if not valid return null
-        if(username == null || username.isEmpty()) {
-            return null;
+        if (token==null || token.isEmpty()) {
+            // check the variables, if not valid return null
+            if(username == null || username.isEmpty()) {
+                return null;
+            }
+
+            if(password == null || password.isEmpty()) {
+                return null;
+            }
+            logger.info("Found Credentials from System Property.");
+        } else {
+            logger.info("Found Token from System Property.");
         }
-
-        if(password == null || password.isEmpty()) {
-            return null;
-        }
-
-        logger.info("Found Credentials from System Property.");
-        return new Credential(username, password);
+        return new Credential(username, password, token);
     }
 }

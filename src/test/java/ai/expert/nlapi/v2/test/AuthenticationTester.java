@@ -8,6 +8,7 @@ import org.junit.Test;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 public class AuthenticationTester {
 
@@ -31,7 +32,7 @@ public class AuthenticationTester {
             assertTrue(true);
         }
         catch(Exception e) {
-            assertTrue(false);
+            fail();
         }
 
         assertTrue(true);
@@ -50,7 +51,7 @@ public class AuthenticationTester {
             assertTrue(true);
         }
         catch(Exception e) {
-            assertTrue(false);
+            fail();
         }
 
         assertTrue(true);

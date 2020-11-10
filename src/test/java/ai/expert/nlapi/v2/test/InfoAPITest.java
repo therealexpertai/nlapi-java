@@ -3,8 +3,8 @@ package ai.expert.nlapi.v2.test;
 import ai.expert.nlapi.exceptions.NLApiException;
 import ai.expert.nlapi.security.Authentication;
 import ai.expert.nlapi.v2.API;
-import ai.expert.nlapi.v2.InfoAPI;
-import ai.expert.nlapi.v2.InfoAPIConfig;
+import ai.expert.nlapi.v2.cloud.InfoAPI;
+import ai.expert.nlapi.v2.cloud.InfoAPIConfig;
 import ai.expert.nlapi.v2.message.ContextsResponse;
 import ai.expert.nlapi.v2.message.TaxonomiesResponse;
 import ai.expert.nlapi.v2.message.TaxonomyResponse;
@@ -17,8 +17,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 
 public class InfoAPITest {
@@ -63,7 +62,7 @@ public class InfoAPITest {
                 // check not existing contexts should throw an exception
                 ContextInfo none = contexts.getContextByName("none");
                 System.out.println("Found ContextInfo:\n" + mapper.writeValueAsString(none));
-                assertTrue(false);
+                fail();
             }
             catch(NLApiException e) {
                 assertTrue(true);
@@ -73,7 +72,7 @@ public class InfoAPITest {
         }
         catch(Exception e) {
             e.printStackTrace();
-            assertTrue(false);
+            fail();
         }
     }
 
@@ -101,7 +100,7 @@ public class InfoAPITest {
                 // check not existing taxonomies should throw an exception
                 TaxonomyInfo none = taxonomies.getTaxonomyByName("none");
                 System.out.println("Found taxonomy:\n" + mapper.writeValueAsString(none));
-                assertTrue(false);
+                fail();
             }
             catch(NLApiException e) {
                 assertTrue(true);
@@ -111,7 +110,7 @@ public class InfoAPITest {
         }
         catch(Exception e) {
             e.printStackTrace();
-            assertTrue(false);
+            fail();
         }
     }
 
@@ -133,7 +132,7 @@ public class InfoAPITest {
         }
         catch(Exception e) {
             e.printStackTrace();
-            assertTrue(false);
+            fail();
         }
     }
 }

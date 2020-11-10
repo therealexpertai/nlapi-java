@@ -19,6 +19,7 @@ package ai.expert.nlapi.security;
 import ai.expert.nlapi.exceptions.NLApiErrorCode;
 import ai.expert.nlapi.exceptions.NLApiException;
 import ai.expert.nlapi.utils.ObjectMapperAdapter;
+import ai.expert.nlapi.utils.StringUtils;
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
 import lombok.EqualsAndHashCode;
@@ -57,6 +58,10 @@ public class BasicAuthenticator implements Authenticator {
             logger.error(msg);
             throw new NLApiException(NLApiErrorCode.AUTHENTICATION_ERROR, msg);
         }
+        if (!StringUtils.isBlank(credential.getToken())) {
+            return credential.getToken();
+        }
+
         if(credential.getUsername() == null || credential.getUsername().isEmpty()) {
             String msg = "Please check settings credential username.";
             logger.error(msg);

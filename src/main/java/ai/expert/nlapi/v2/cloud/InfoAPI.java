@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
-package ai.expert.nlapi.v2;
+package ai.expert.nlapi.v2.cloud;
 
 import ai.expert.nlapi.exceptions.NLApiErrorCode;
 import ai.expert.nlapi.exceptions.NLApiException;
 import ai.expert.nlapi.security.Authentication;
 import ai.expert.nlapi.utils.APIUtils;
 import ai.expert.nlapi.utils.ObjectMapperAdapter;
+import ai.expert.nlapi.v2.API;
 import ai.expert.nlapi.v2.message.ContextsResponse;
 import ai.expert.nlapi.v2.message.TaxonomiesResponse;
 import ai.expert.nlapi.v2.message.TaxonomyResponse;
@@ -70,7 +71,7 @@ public class InfoAPI {
             throw new NLApiException(NLApiErrorCode.CONNECTION_ERROR, msg);
         }
 
-        logger.info(String.format("GET contexts call successful"));
+        logger.info("GET contexts call successful");
         return APIUtils.fromJSON(response.getBody(), ContextsResponse.class);
     }
 
@@ -93,7 +94,7 @@ public class InfoAPI {
             throw new NLApiException(NLApiErrorCode.CONNECTION_ERROR, msg);
         }
 
-        logger.info(String.format("GET taxonomies call successful"));
+        logger.info("GET taxonomies call successful");
         return APIUtils.fromJSON(response.getBody(), TaxonomiesResponse.class);
     }
 
@@ -116,7 +117,7 @@ public class InfoAPI {
             throw new NLApiException(NLApiErrorCode.CONNECTION_ERROR, msg);
         }
 
-        logger.info(String.format("GET taxonomy call successful"));
+        logger.info("GET taxonomy call successful");
         return APIUtils.fromJSON(response.getBody(), TaxonomyResponse.class);
     }
 }
