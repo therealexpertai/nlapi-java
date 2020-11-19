@@ -187,12 +187,15 @@ public class Analyzer {
     }
 
     private String getResponseDocumentString(String text, List<String> analysis, List<String> features) throws NLApiException {
-        String md5 = getMD5(text);
-        if (md5==null) {
-            String msg = "Error generating text md5 hash";
-            throw new NLApiException(NLApiErrorCode.DATA_PROCESSING_ERROR, msg);
+        String ekey = "";
+        if (authentication!=null) {
+            String md5 = getMD5(text);
+            if(md5 == null) {
+                String msg = "Error generating text md5 hash";
+                throw new NLApiException(NLApiErrorCode.DATA_PROCESSING_ERROR, msg);
+            }
+            ekey = getExecutionKey(md5);
         }
-        String ekey = getExecutionKey(md5);
         String URLpath = EDGE_URL;
         logger.debug("Sending text to edge analyze API: " + URLpath);
         HttpResponse<String> response = Unirest.post(URLpath)
