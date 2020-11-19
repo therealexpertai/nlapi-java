@@ -1,6 +1,7 @@
 # expert.ai Natural Language API for Java v2
 
-Java client for the [expert.ai Natural Language API](https://docs.expert.ai/nlapi/v2). Leverage Natural Language technology from your Java apps.
+Java client for the expert.ai Natural Language APIs adds Natural Language understanding capabilities to your Java apps.
+The client can use either the Cloud based [Natural Language API](https://docs.expert.ai/nlapi/latest/) or a local instance of [Edge NL API](https://docs.expert.ai/edgenlapi/latest/).
 
 Check out what expert.ai Natural Language API can do for your application by [our live demo](https://try.expert.ai/).
 Natural Language API provides a comprehensive set of natural language understanding capabilities based on expert.ai technology:
@@ -65,6 +66,8 @@ Here are some examples of how to use the library in order to leverage the Natura
 
 
 You can get the result of the document analysis applied to your text as follows:
+
+##### Natural Language API:
 
 ```java
 
@@ -146,6 +149,89 @@ public class AnalisysTest {
 }
 
 ```
+
+##### Edge NL API:
+
+```java
+
+import ai.expert.nlapi.security.Authentication;
+import ai.expert.nlapi.security.Authenticator;
+import ai.expert.nlapi.security.BasicAuthenticator;
+import ai.expert.nlapi.security.Credential;
+import ai.expert.nlapi.v2.API;
+import ai.expert.nlapi.v2.edge.Analyzer;
+import ai.expert.nlapi.v2.edge.AnalyzerConfig;
+import ai.expert.nlapi.v2.message.AnalyzeResponse;
+
+public class AnalisysTest {
+
+    static StringBuilder sb = new StringBuilder();
+
+    // Sample text to be analyzed
+    static {
+        sb.append("Michael Jordan was one of the best basketball players of all time.");
+        sb.append("Scoring was Jordan's stand-out skill, but he still holds a defensive NBA record, with eight steals in a half.");  
+    }
+
+    public static String getSampleText() {
+        return sb.toString();
+    }
+    
+    //Method for setting the authentication credentials - set your credentials here.
+    public static Authentication createAuthentication() throws Exception {
+    	DefaultCredentialsProvider credentialsProvider = new DefaultCredentialsProvider();
+        Authenticator authenticator = new BasicAuthenticator(credentialsProvider);
+        return new Authentication(authenticator);
+    }
+
+    //Method for selecting the resource to be call by the API; 
+    //as today, the API provides the standard context only, and  
+    //five languages such as English, French, Spanish, German and Italian
+    public static Analyzer createAnalyzer() throws Exception {
+        return new Analyzer(AnalyzerConfig.builder()
+            .withVersion(API.Versions.V2)
+            .withHost(API.DEFAULT_EDGE_HOST)
+            .withAuthentication(createAuthentication())
+            .build());
+    }
+
+    public static void main(String[] args) {
+        try {
+            Analyzer analyzer = createAnalyzer();
+            AnalyzeResponse response = null;
+            
+            // Disambiguation Analisys
+            response = analyzer.disambiguation(getSampleText());
+            response.prettyPrint();
+
+            // Relevants Analisys
+            response = analyzer.relevants(getSampleText());
+            response.prettyPrint();
+
+            // Entities Analisys
+            response = analyzer.entities(getSampleText());
+            response.prettyPrint();
+
+            // Relations Analisys
+            response = analyzer.relations(getSampleText());
+            response.prettyPrint();
+
+            // Sentiment Analisys
+            response = analyzer.sentiment(getSampleText());
+            response.prettyPrint();
+            
+            // Full Analisys
+            response = analyzer.analyze(getSampleText());
+            response.prettyPrint();
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+}
+
+```
+
 
 The API document analysis resources operate within a [context](https://docs.expert.ai/nlapi/v2/guide/contexts-and-kg/). For retrieving the list of all valid contexts use this code:
 
