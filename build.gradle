@@ -13,12 +13,15 @@ plugins {
     id 'signing'
 }
 
+// uncomment below to publish on maven central
+/*
 tasks.distZip.enabled = false
 tasks.distTar.enabled = false
 
 tasks.withType(GenerateModuleMetadata) {
     enabled = false
 }
+*/
 
 task sourceJar(type: Jar) {
     classifier "sources"
