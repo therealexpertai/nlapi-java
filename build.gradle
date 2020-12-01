@@ -13,7 +13,7 @@ plugins {
 }
 
 group = 'expert.ai'
-version = '2.1.1'
+version = '2.2.0'
 description = 'Natural Language API expert.ai Java SDK v2'
 
 publishing {
