@@ -30,7 +30,7 @@ public class Entity {
     private Long syncon;
     private EntityType type;
     private String lemma;
-    private int relevance;
+    private Integer relevance;
     private List<DocumentPosition> positions;
     private List<InferredAttribute> attributes;
 }
