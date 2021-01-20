@@ -27,7 +27,7 @@ import java.util.List;
 @NoArgsConstructor
 public class MainSyncon {
 
-    private String syncon;
+    private Long syncon;
     private String lemma;
     private Float score;
     private List<DocumentPosition> positions;

@@ -29,7 +29,7 @@ public class RelatedItem {
 
     private String relation;
     private Long syncon;
-    private EntityType type;
+    private String type;
     private String lemma;
     private String text;
     private int relevance;
