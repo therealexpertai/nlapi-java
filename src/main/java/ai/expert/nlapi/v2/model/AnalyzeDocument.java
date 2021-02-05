@@ -22,6 +22,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Map;
 
 @Data
 @AllArgsConstructor
@@ -52,4 +53,5 @@ public class AnalyzeDocument {
 
     private List<Category> categories;
     private List<Extraction> extractions;
+    private Map<String,Object> extraData;
 }
