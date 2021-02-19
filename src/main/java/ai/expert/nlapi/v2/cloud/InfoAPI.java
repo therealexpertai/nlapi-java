@@ -23,6 +23,7 @@ import ai.expert.nlapi.utils.APIUtils;
 import ai.expert.nlapi.utils.ObjectMapperAdapter;
 import ai.expert.nlapi.v2.API;
 import ai.expert.nlapi.v2.message.ContextsResponse;
+import ai.expert.nlapi.v2.message.DetectorsResponse;
 import ai.expert.nlapi.v2.message.TaxonomiesResponse;
 import ai.expert.nlapi.v2.message.TaxonomyResponse;
 import kong.unirest.HttpResponse;
@@ -75,6 +76,23 @@ public class InfoAPI {
         return APIUtils.fromJSON(response.getBody(), ContextsResponse.class);
     }
 
+    public DetectorsResponse getDetectors() throws NLApiException {
+
+        String URLGet = URL + "/detectors";
+        logger.debug("Calling GET contexts: " + URLGet);
+        HttpResponse<String> response = Unirest.get(URLGet)
+                                               .header("Authorization", APIUtils.getBearerToken(authentication))
+                                               .asString();
+
+        if(response.getStatus() != 200) {
+            String msg = String.format("GET contexts call to API %s return error status %d", URLGet, response.getStatus());
+            logger.error(msg);
+            throw new NLApiException(NLApiErrorCode.CONNECTION_ERROR, msg);
+        }
+
+        logger.info("GET contexts call successful");
+        return APIUtils.fromJSON(response.getBody(), DetectorsResponse.class);
+    }
     /**
      * Returns information about available taxonomies
      *
@@ -105,7 +123,7 @@ public class InfoAPI {
      */
     public TaxonomyResponse getTaxonomy(String taxonomy, API.Languages lang) throws NLApiException {
 
-        String URLGet = String.format("%s//taxonomies/%s/%s", URL, taxonomy.toLowerCase(), lang.code());
+        String URLGet = String.format("%s/taxonomies/%s/%s", URL, taxonomy.toLowerCase(), lang.code());
         logger.debug("Calling GET taxonomy: " + URLGet);
         HttpResponse<String> response = Unirest.get(URLGet)
                                                .header("Authorization", APIUtils.getBearerToken(authentication))

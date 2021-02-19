@@ -55,8 +55,17 @@ public class LocalExtraDataTest {
             TestUtils.callRateCheck();
 
             // set text to be analyzed
-            sb.append("Michael Jordan was one of the best basketball players of all time.");
-            sb.append("Scoring was Jordan's stand-out skill, but he still holds a defensive NBA record, with eight steals in a half.");
+            sb.append("Mario Rossi, \\/ Ph.D., D.Sc., F.A.H.A.\n" +
+                      "CURRICULUM VITAE\n" +
+                      "May 2017\n" +
+                      "PERSONAL\n" +
+                      "Office: University of Kentucky Telephone: (859) 323-3512\n" +
+                      "Saha Cardiovascular Research Center Fax: (859) 257-3235\n" +
+                      "BBSRB, room B-243 Cell: (859) 967-9563\n" +
+                      "Lexington KY 40536-0509 E-Mail: Alan.Daugherty@uky.edu\n" +
+                      "Web site: http://www.mc.uky.edu/cvrc/faculty/daugherty-alan/\n" +
+                      "Date of Birth: May 2, 1957 Place of Birth: Liverpool, UK\n" +
+                      "Nationality: Naturalized US Citizen\n");
         }
         catch(Exception e) {
             e.printStackTrace();

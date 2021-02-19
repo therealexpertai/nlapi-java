@@ -6,6 +6,7 @@ import ai.expert.nlapi.v2.API;
 import ai.expert.nlapi.v2.cloud.InfoAPI;
 import ai.expert.nlapi.v2.cloud.InfoAPIConfig;
 import ai.expert.nlapi.v2.message.ContextsResponse;
+import ai.expert.nlapi.v2.message.DetectorsResponse;
 import ai.expert.nlapi.v2.message.TaxonomiesResponse;
 import ai.expert.nlapi.v2.message.TaxonomyResponse;
 import ai.expert.nlapi.v2.model.ContextInfo;
@@ -75,7 +76,41 @@ public class InfoAPITest {
             fail();
         }
     }
+  @Test
+    public void testGetDetectors() {
 
+        try {
+            // get authentication, if not exist it creates one
+            Authentication authentication = TestUtils.getAuthentication();
+
+            // create InfoAPI
+            InfoAPI infoAPI = createInfoAPI(authentication);
+
+            DetectorsResponse detectors = infoAPI.getDetectors();
+            detectors.prettyPrint();
+            assertThat(detectors, instanceOf(DetectorsResponse.class));
+
+            // check existing contexts
+            ContextInfo standard = detectors.getDetectorByName("pii");
+            System.out.println("Found ContextInfo:\n" + mapper.writeValueAsString(standard));
+
+            try {
+                // check not existing contexts should throw an exception
+                ContextInfo none = detectors.getDetectorByName("none");
+                System.out.println("Found ContextInfo:\n" + mapper.writeValueAsString(none));
+                fail();
+            }
+            catch(NLApiException e) {
+                assertTrue(true);
+            }
+
+            assertTrue(true);
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+            fail();
+        }
+    }
     @Test
     public void testGetTaxonomies() {
 
@@ -124,7 +159,7 @@ public class InfoAPITest {
             // create InfoAPI
             InfoAPI infoAPI = createInfoAPI(authentication);
 
-            TaxonomyResponse taxonomy = infoAPI.getTaxonomy("geotax", API.Languages.en);
+            TaxonomyResponse taxonomy = infoAPI.getTaxonomy("iptc", API.Languages.en);
             taxonomy.prettyPrint();
             assertThat(taxonomy, instanceOf(TaxonomyResponse.class));
 
