@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2020 original authors
  *
- * Licensed under the Apache License, Versions 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -16,27 +16,28 @@
 
 package ai.expert.nlapi.v2.model;
 
-import ai.expert.nlapi.exceptions.NLApiErrorCode;
-import ai.expert.nlapi.exceptions.NLApiException;
+import ai.expert.nlapi.v2.API;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Map;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ContextInfo {
+public class DetectDocument {
 
-    private String name;
-    private String description;
-    private List<ContextLanguageInfo> languages;
-    private String contract;
-    public ContextLanguageInfo getLanguagesByName(String name) throws NLApiException {
-        return languages.stream()
-                        .filter(language -> language.getName().equals(name))
-                        .findAny()
-                        .orElseThrow(() -> new NLApiException(NLApiErrorCode.REQUEST_UNKNOWN_LANGUAGE_ERROR));
-    }
+    private String content;
+    private API.Languages language;
+    private String version;
+    private List<Extraction> extractions;
+    private List<Entity> entities;
+    private List<KnowledgeEntry> knowledge;
+    private List<Token> tokens;
+    private List<Phrase> phrases;
+    private List<Sentence> sentences;
+    private List<Paragraph> paragraphs;
+    private Map<String,Object> extraData;
 }

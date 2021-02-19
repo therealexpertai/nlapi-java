@@ -501,7 +501,116 @@ public class TaxonomiesTest {
 }
 
 ```
+### Detectors Api
 
+
+You can also run document detector API to perform a deep linguistic analysis of a given text in order to extract particular types of information from it. For example, with *PII Detector* (PII stands for Personal Identifiable Informtion) we are able to detect and extract information (such as names, dates, addresses, telephone numbers, etc.) that could be considered "sensitive". 
+
+```java
+
+package ai.expert.nlapi.v2.test;
+
+import ai.expert.nlapi.security.Authentication;
+import ai.expert.nlapi.security.Authenticator;
+import ai.expert.nlapi.security.BasicAuthenticator;
+import ai.expert.nlapi.security.Credential;
+import ai.expert.nlapi.v2.API;
+import ai.expert.nlapi.v2.cloud.Detector;
+import ai.expert.nlapi.v2.cloud.DetectorConfig;
+import ai.expert.nlapi.v2.message.DetectResponse;
+
+public class CategorizationIPTCTest {
+
+    static StringBuilder sb = new StringBuilder();
+    
+    // Sample text to be analyzed
+    static {
+        sb.append("Michael Jordan was one of the best basketball players of all time.");
+        sb.append("Scoring was Jordan's stand-out skill, but he still holds a defensive NBA record, with eight steals in a half.");  
+    }
+
+    public static String getSampleText() {
+        return sb.toString();
+    }
+
+    //Method for setting the authentication credentials - set your credentials here.
+    public static Authentication createAuthentication() throws Exception {
+    	DefaultCredentialsProvider credentialsProvider = new DefaultCredentialsProvider();
+        Authenticator authenticator = new BasicAuthenticator(credentialsProvider);
+        return new Authentication(authenticator);
+    }
+    
+   public static Detector createDetector(Authentication authentication, String detector, API.Languages lang) throws Exception {
+        return new Detector(DetectorConfig.builder()
+                      .withVersion(API.Versions.V2)
+                      .withDetector(detector)
+                      .withLanguage(lang)
+                      .withAuthentication(authentication)
+                      .build());
+    }
+
+    public static void main(String[] args) {
+        try {
+             // create detector
+            Detector detectorEn = createDetector(authentication, "pii", API.Languages.en);
+
+            // send detector request and get response
+            DetectResponse detect = detectorEn.detect(getSampleTextEn());
+            // print json response
+            detect.prettyPrint();
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+}
+
+```
+
+For retrieving the list of all valid detectors use this code:
+
+```java
+
+import ai.expert.nlapi.security.Authentication;
+import ai.expert.nlapi.security.Authenticator;
+import ai.expert.nlapi.security.BasicAuthenticator;
+import ai.expert.nlapi.security.Credential;
+import ai.expert.nlapi.v2.message.DetectorsResponse;
+import ai.expert.nlapi.v2.API;
+import ai.expert.nlapi.v2.cloud.Analyzer;
+import ai.expert.nlapi.v2.cloud.AnalyzerConfig;
+
+public class DetectorsTest {
+
+
+    //Method for setting the authentication credentials - set your credentials here.
+    public static Authentication createAuthentication() throws Exception {
+    	DefaultCredentialsProvider credentialsProvider = new DefaultCredentialsProvider();
+        Authenticator authenticator = new BasicAuthenticator(credentialsProvider);
+        return new Authentication(authenticator);
+    }
+
+
+
+    public static void main(String[] args) {
+        try {
+            // create InfoAPI
+        	InfoAPI infoAPI = new InfoAPI(InfoAPIConfig.builder()
+                .withAuthentication(createAuthentication())
+                .withVersion(API.Versions.V2)
+                .build());
+    	
+	    	
+	        DetectorsResponse detectors = infoAPI.getDetectors();
+            detectors.prettyPrint();
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+}
+
+```
 ## API capabilities
 
 The API analysis and classification capabilities are listed below:
