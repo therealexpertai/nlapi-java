@@ -44,12 +44,14 @@ public class Analyzer {
     private static final Logger logger = LogManager.getLogger();
 
     private final Authentication authentication;
+    private final String resource;
     private final String EKEY_URL;
     private final String EDGE_URL;
 
     public Analyzer(AnalyzerConfig config) {
 
         authentication = config.getAuthentication();
+        resource = config.getResource();
 
         EKEY_URL = String.format("%s/edge/key", API.EDGE_AUTHORITY);
         EDGE_URL = String.format("%s/api/analyze", config.getHost());
@@ -200,7 +202,7 @@ public class Analyzer {
         logger.debug("Sending text to edge analyze API: " + URLpath);
         HttpResponse<String> response = Unirest.post(URLpath)
                                                .header("execution-key", ekey)
-                                               .body(new AnalysisRequestWithOptions(Document.of(text), Options.of(analysis, features)).toJSON())
+                                               .body(new AnalysisRequestWithOptions(Document.of(text), Options.of(analysis, features), resource).toJSON())
                                                .asString();
         
         /*

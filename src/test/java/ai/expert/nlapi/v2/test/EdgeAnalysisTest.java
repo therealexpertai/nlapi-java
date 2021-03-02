@@ -45,13 +45,18 @@ public class EdgeAnalysisTest {
         return sb.toString();
     }
 
-    public static Analyzer createAnalyzer(Authentication authentication) throws Exception {
+    public static Analyzer createAnalyzer(Authentication authentication, String resource) throws Exception {
         return new Analyzer(AnalyzerConfig.builder()
                                           .withVersion(API.Versions.V2)
                                           .withHost(API.DEFAULT_EDGE_HOST)
                                           .withAuthentication(authentication)
+                                          .withResource(resource)
                                           .build());
     }
+
+    public static Analyzer createAnalyzer(Authentication authentication) throws Exception {
+        return createAnalyzer(authentication, null);
+     }
 
     public static Model createModel() throws Exception {
         return new Model(ModelConfig.builder()
@@ -87,6 +92,13 @@ public class EdgeAnalysisTest {
 
             // create analyzer
             Analyzer analyzer = createAnalyzer(authentication);
+            /*
+            Analyzer analyzer = new Analyzer(AnalyzerConfig.builder()
+                                          .withVersion(API.Versions.V2)
+                                          .withHost("http://127.0.0.1:6090")
+                                          //.withResource("standard_en_15.0")
+                                          .build());
+            */
 
             // Full Analysis
             AnalyzeResponse analysis = analyzer.analyze(getSampleText());

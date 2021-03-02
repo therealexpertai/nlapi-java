@@ -32,6 +32,7 @@ public class AnalysisRequestWithOptions {
 
     Document document;
     Options options;
+    String resource;
 
     @SneakyThrows
     public String toJSON() {
