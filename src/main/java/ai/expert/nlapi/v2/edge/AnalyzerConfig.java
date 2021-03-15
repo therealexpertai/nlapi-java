@@ -27,5 +27,6 @@ public class AnalyzerConfig {
 
     API.Versions version;
     String host;
+    String resource;
     Authentication authentication;
 }
