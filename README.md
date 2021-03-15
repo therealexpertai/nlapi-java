@@ -18,6 +18,7 @@ Natural Language API provides a comprehensive set of natural language understand
     * Relation extraction
     * Sentiment analysis
 * Document classification
+* Information detection
 
 ## What you'll need
 
@@ -69,12 +70,10 @@ The default chain checks in order the following:
 
 ## Usage examples
 
-
 Here are some examples of how to use the library in order to leverage the Natural Language API:
 
 
-### Document Analisys
-
+### Document analysis
 
 You can get the result of the document analysis applied to your text as follows:
 
@@ -288,8 +287,7 @@ public class ContextsTest {
 
 ```
 
-### Document Classification
-
+### Document classification
 
 You can also run document classification with respect to the [IPTC Media Topic taxonomy](https://iptc.org/standards/media-topics/)
 
@@ -512,10 +510,10 @@ public class TaxonomiesTest {
 }
 
 ```
-### Detectors Api
 
+### Information detection
 
-You can also run document detector API to perform a deep linguistic analysis of a given text in order to extract particular types of information from it. For example, with *PII Detector* (PII stands for Personal Identifiable Informtion) we are able to detect and extract information (such as names, dates, addresses, telephone numbers, etc.) that could be considered "sensitive". 
+You can also perform information detection using one the available detectors. For example, the *PII Detector* (PII stands for Personal Identifiable Information) is able to detect and extract information (such as names, dates, addresses, telephone numbers, etc.) that could be considered "sensitive". 
 
 ```java
 
@@ -624,21 +622,7 @@ public class DetectorsTest {
 ```
 ## API capabilities
 
-The API analysis and classification capabilities are listed below:
-
-### Document Analysis
-
-
-* [Deep linguistic analysis](https://docs.expert.ai/nlapi/v2/reference/output/linguistic-analysis/)	
-* [Keyphrase extraction](https://docs.expert.ai/nlapi/v2/reference/output/keyphrase-extraction/)	
-* [Named entities recognition](https://docs.expert.ai/nlapi/v2/reference/output/entity-recognition/)
-* [Full document analysis](https://docs.expert.ai/nlapi/v2/reference/output/full-analysis/)
-
-
-### Document Classification
-
-
-* [IPTC Media Topics and GeoTax classification](https://docs.expert.ai/nlapi/v2/reference/output/classification/)
+Please refer to the official [guide](https://docs.expert.ai/nlapi/v2/guide/) for the description of all the API capabilities.
 
 ## Notes
 
