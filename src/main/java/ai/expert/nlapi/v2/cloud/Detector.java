@@ -51,10 +51,10 @@ public class Detector {
                .setObjectMapper(new ObjectMapperAdapter());
     }
 
-    public DetectResponse detect(String text) throws NLApiException {
+    public DetectResponse detection(String text) throws NLApiException {
 
         // get json reply from expert.ai API
-        String json = detectAsString(text);
+        String json = detectionAsString(text);
 
         // parsing and checking response
         DetectResponse response = APIUtils.fromJSON(json, DetectResponse.class);
@@ -62,13 +62,13 @@ public class Detector {
             return response;
         }
 
-        String msg = String.format("Detect call to API %s return an error json: %s", URL, json);
+        String msg = String.format("Detection call to API %s return an error json: %s", URL, json);
         logger.error(msg);
         throw new NLApiException(NLApiErrorCode.EXECUTION_REQUEST_ERROR, msg);
 
     }
 
-    public String detectAsString(String text) throws NLApiException {
+    public String detectionAsString(String text) throws NLApiException {
 
         logger.debug("Sending text to detect API: " + URL);
 
@@ -78,12 +78,12 @@ public class Detector {
                                                .asString();
 
         if(response.getStatus() != 200) {
-            String msg = String.format("Detect call to API %s return error status %d", URL, response.getStatus());
+            String msg = String.format("Detection call to API %s return error status %d", URL, response.getStatus());
             logger.error(msg);
             throw new NLApiException(NLApiErrorCode.CONNECTION_ERROR, msg);
         }
 
-        logger.info("Detect call successful");
+        logger.info("Detection call successful");
         return response.getBody();
     }
 }

@@ -75,7 +75,7 @@ public class DetectionTest {
             Detector detectorEn = createDetector(authentication, "pii", API.Languages.en);
 
             // send detector request and get response
-            DetectResponse detect = detectorEn.detect(getSampleTextEn());
+            DetectResponse detect = detectorEn.detection(getSampleTextEn());
             // print json response
             detect.prettyPrint();
 
@@ -105,14 +105,14 @@ public class DetectionTest {
             Detector detectorIt = createDetector(authentication, "pii", API.Languages.it);
 
             // send categorization request and get response
-            DetectResponse detect = detectorIt.detect(getSampleTextIt());
+            DetectResponse detect = detectorIt.detection(getSampleTextIt());
             // print json response
             detect.prettyPrint();
 
             // assert there is the data passed as input
             assertNotNull(detect.getData());
             assertNotNull(detect.getData().getContent());
-            assertSame(detect.getData().getLanguage(), API.Languages.en);
+            assertSame(detect.getData().getLanguage(), API.Languages.it);
 
             // assert there are categories
             assertNotNull(detect.getData().getExtractions());
