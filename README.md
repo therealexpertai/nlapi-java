@@ -51,7 +51,7 @@ cd nlapi-java
 <dependency>
     <groupId>ai.expert</groupId>
     <artifactId>nlapi-java-sdk</artifactId>
-    <version>2.1.2</version>
+    <version>2.2.0</version>
 </dependency>
 
 ```
