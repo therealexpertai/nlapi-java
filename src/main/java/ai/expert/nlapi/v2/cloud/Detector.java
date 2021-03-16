@@ -51,7 +51,7 @@ public class Detector {
                .setObjectMapper(new ObjectMapperAdapter());
     }
 
-    public DetectResponse detection(String text) throws NLApiException {
+    public DetectResponse detect(String text) throws NLApiException {
 
         // get json reply from expert.ai API
         String json = detectionAsString(text);

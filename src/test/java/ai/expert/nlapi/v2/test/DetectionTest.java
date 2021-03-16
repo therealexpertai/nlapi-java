@@ -75,7 +75,7 @@ public class DetectionTest {
             Detector detectorEn = createDetector(authentication, "pii", API.Languages.en);
 
             // send detector request and get response
-            DetectResponse detect = detectorEn.detection(getSampleTextEn());
+            DetectResponse detect = detectorEn.detect(getSampleTextEn());
             // print json response
             detect.prettyPrint();
 
@@ -105,7 +105,7 @@ public class DetectionTest {
             Detector detectorIt = createDetector(authentication, "pii", API.Languages.it);
 
             // send categorization request and get response
-            DetectResponse detect = detectorIt.detection(getSampleTextIt());
+            DetectResponse detect = detectorIt.detect(getSampleTextIt());
             // print json response
             detect.prettyPrint();
 
