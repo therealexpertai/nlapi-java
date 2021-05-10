@@ -83,22 +83,21 @@ public class EdgeAnalysisTest {
         }
     }
 
-    @Ignore
-    //@Test
+    //@Ignore
+    @Test
     public void testEdgeAnalysis() {
         try {
             // get authentication, if not exist it creates one
-            Authentication authentication = TestUtils.getAuthentication();
+            //Authentication authentication = TestUtils.getAuthentication();
 
             // create analyzer
-            Analyzer analyzer = createAnalyzer(authentication);
-            /*
+            //Analyzer analyzer = createAnalyzer(authentication);
             Analyzer analyzer = new Analyzer(AnalyzerConfig.builder()
                                           .withVersion(API.Versions.V2)
                                           .withHost("http://127.0.0.1:6090")
                                           //.withResource("standard_en_15.0")
+                                          //.withResource("corra")
                                           .build());
-            */
 
             // Full Analysis
             AnalyzeResponse analysis = analyzer.analyze(getSampleText());
@@ -132,7 +131,14 @@ public class EdgeAnalysisTest {
             analysis = analyzer.extraction(getSampleText());
             List<Extraction> extractions = analysis.getData().getExtractions();
 
-            Model model = createModel();
+            //Model model = createModel();
+            Model model = new Model(ModelConfig.builder()
+                         .withVersion(API.Versions.V2)
+                          .withHost("http://127.0.0.1:6090")
+                          //.withResource("corra")
+                         .build());
+
+
             TemplatesModelResponse templModelResponse = model.templates();
             List<TemplateNamespace> templates = templModelResponse.getData();
 

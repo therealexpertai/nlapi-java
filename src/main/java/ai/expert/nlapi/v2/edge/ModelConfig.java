@@ -26,4 +26,5 @@ public class ModelConfig {
 
     API.Versions version;
     String host;
+    String resource;
 }

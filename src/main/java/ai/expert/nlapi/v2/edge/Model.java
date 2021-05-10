@@ -30,9 +30,12 @@ public class Model {
 
     private static final Logger logger = LogManager.getLogger();
 
+    private final String resource;
     private final String EDGE_URL;
 
     public Model(ModelConfig config) {
+
+        resource = config.getResource();
 
         EDGE_URL = String.format("%s/api/model", config.getHost());
 
@@ -86,6 +89,7 @@ public class Model {
         String URLpath = EDGE_URL;
         ModelRequest mr = new ModelRequest();
         mr.setInfo(model);
+        mr.setResource(resource);
         logger.debug("Sending request to Edge Model API: " + URLpath);
         HttpResponse<String> response = Unirest.post(URLpath)
                                                .body(mr.toJSON())

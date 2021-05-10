@@ -29,6 +29,7 @@ import lombok.SneakyThrows;
 public class ModelRequest {
 
     String info;
+    String resource;
 
     @SneakyThrows
     public String toJSON() {
