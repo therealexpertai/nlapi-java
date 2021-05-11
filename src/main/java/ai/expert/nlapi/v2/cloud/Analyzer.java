@@ -33,8 +33,7 @@ import org.apache.logging.log4j.Logger;
 public class Analyzer {
 
     private static final Logger logger = LogManager.getLogger();
-
-    private boolean isLanguageSet = false;
+    
     private final Authentication authentication;
     private final AnalyzerConfig configuration;
     private String URL;
