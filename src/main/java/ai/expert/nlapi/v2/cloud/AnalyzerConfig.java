@@ -26,7 +26,7 @@ import lombok.Value;
 public class AnalyzerConfig {
 
     API.Versions version;
-    String context;
+    API.Contexts context;
     API.Languages language;
     Authentication authentication;
 }

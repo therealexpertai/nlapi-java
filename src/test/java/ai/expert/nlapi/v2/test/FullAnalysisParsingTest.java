@@ -35,7 +35,7 @@ public class FullAnalysisParsingTest {
     public static Analyzer createAnalyzer(Authentication authentication) throws Exception {
         return new Analyzer(AnalyzerConfig.builder()
                                           .withVersion(API.Versions.V2)
-                                          .withContext("standard")
+                                          .withContext(API.Contexts.STANDARD)
                                           .withLanguage(API.Languages.en)
                                           .withAuthentication(authentication)
                                           .build());

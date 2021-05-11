@@ -34,15 +34,23 @@ public class Analyzer {
 
     private static final Logger logger = LogManager.getLogger();
 
+    private boolean isLanguageSet = false;
     private final Authentication authentication;
-    private final String URL;
+    private final AnalyzerConfig configuration;
+    private String URL;
 
     public Analyzer(AnalyzerConfig config) {
 
         authentication = config.getAuthentication();
-
-        URL = String.format("%s/%s/analyze/%s/%s",
-                            API.AUTHORITY, config.getVersion(), config.getContext().toLowerCase(), config.getLanguage().code());
+        configuration = config;
+        if (config.getLanguage() != null) {
+            URL = String.format("%s/%s/analyze/%s/%s",
+                                API.AUTHORITY, config.getVersion(), config.getContext().value().toLowerCase(), config.getLanguage().code());
+            this.isLanguageSet = true;
+        } else {
+            URL = String.format("%s/%s/analyze/%s/",
+                                API.AUTHORITY, config.getVersion(), config.getContext().value().toLowerCase());
+        }
 
         Unirest.config()
                .addDefaultHeader("Content-Type", "application/json")
@@ -51,37 +59,70 @@ public class Analyzer {
     }
 
     public AnalyzeResponse analyze(String text, String analysisType) throws NLApiException {
-        return getResponseDocument(text, analysisType);
+        return getResponseDocument(text, analysisType, API.Languages.notKnown);
     }
 
+    public AnalyzeResponse analyze(String text, String analysisType, API.Languages lang) throws NLApiException {
+        return getResponseDocument(text, analysisType, lang);
+    }
+
+
     public AnalyzeResponse analyze(String text) throws NLApiException {
-        return getResponseDocument(text, null);
+        return getResponseDocument(text, null, API.Languages.notKnown);
+    }
+
+    public AnalyzeResponse full(String text) throws NLApiException {
+        return getResponseDocument(text, null, API.Languages.notKnown);
+    }
+
+    public AnalyzeResponse full(String text, API.Languages lang) throws NLApiException {
+        return getResponseDocument(text, null, lang);
     }
 
     public AnalyzeResponse disambiguation(String text) throws NLApiException {
-        return getResponseDocument(text, "disambiguation");
+        return getResponseDocument(text, "disambiguation", API.Languages.notKnown);
+    }
+
+    public AnalyzeResponse disambiguation(String text, API.Languages lang) throws NLApiException {
+        return getResponseDocument(text, "disambiguation", lang);
     }
 
     public AnalyzeResponse relevants(String text) throws NLApiException {
-        return getResponseDocument(text, "relevants");
+        return getResponseDocument(text, "relevants", API.Languages.notKnown);
+    }
+
+    public AnalyzeResponse relevants(String text, API.Languages lang) throws NLApiException {
+        return getResponseDocument(text, "relevants", lang);
     }
 
     public AnalyzeResponse entities(String text) throws NLApiException {
-        return getResponseDocument(text, "entities");
+        return getResponseDocument(text, "entities", API.Languages.notKnown);
+    }
+
+    public AnalyzeResponse entities(String text, API.Languages lang) throws NLApiException {
+        return getResponseDocument(text, "entities", lang);
     }
 
     public AnalyzeResponse relations(String text) throws NLApiException {
-        return getResponseDocument(text, "relations");
+        return getResponseDocument(text, "relations", API.Languages.notKnown);
+    }
+
+    public AnalyzeResponse relations(String text, API.Languages lang) throws NLApiException {
+        return getResponseDocument(text, "relations", lang);
     }
 
     public AnalyzeResponse sentiment(String text) throws NLApiException {
-        return getResponseDocument(text, "sentiment");
+        return getResponseDocument(text, "sentiment", API.Languages.notKnown);
     }
 
-    private AnalyzeResponse getResponseDocument(String text, String analysisType) throws NLApiException {
+    public AnalyzeResponse sentiment(String text, API.Languages lang) throws NLApiException {
+        return getResponseDocument(text, "sentiment", lang);
+    }
+
+    private AnalyzeResponse getResponseDocument(String text, String analysisType, API.Languages lang) throws NLApiException {
 
         // get json reply from expert.ai API
-        String json = getResponseDocumentString(text, analysisType);
+        String json = getResponseDocumentString(text, analysisType, lang);
 
         // parsing and checking response
         AnalyzeResponse response = APIUtils.fromJSON(json, AnalyzeResponse.class);
@@ -95,9 +136,23 @@ public class Analyzer {
     }
 
 
-    public String getResponseDocumentString(String text, String analysisType) throws NLApiException {
+    public String getResponseDocumentString(String text, String analysisType, API.Languages lang) throws NLApiException {
+        String URLpath;
+        if (lang != API.Languages.notKnown) {
+            URLpath = String.format("%s/%s/analyze/%s/%s",
+                          API.AUTHORITY, configuration.getVersion(),
+                          configuration.getContext().value().toLowerCase(), lang.code());
+        } else if (configuration.getLanguage() != null) {
+            URLpath = String.format("%s/%s/analyze/%s/%s",
+                          API.AUTHORITY, configuration.getVersion(),
+                          configuration.getContext().value().toLowerCase(), configuration.getLanguage().code());
+        } else {
+            logger.info("No language detected, sending request with english language");
+            URLpath = String.format("%s/%s/analyze/%s/%s",
+                                    API.AUTHORITY, configuration.getVersion(),
+                                    configuration.getContext().value().toLowerCase(), API.Languages.en.code());
+        }
 
-        String URLpath = URL;
         // if analysisType is defined and different from "full" enable specific analysis type, e.g. "entities"
         if(analysisType != null && !analysisType.isEmpty() && !analysisType.equalsIgnoreCase("full")) {
             URLpath = URL + "/" + analysisType.toLowerCase();

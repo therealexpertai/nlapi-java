@@ -87,6 +87,7 @@ public class API {
 
     public enum Languages {
 
+        notKnown("unknown", "Unknown"),
         de("de", "German"),
         en("en", "English"),
         es("es", "Spanish"),
