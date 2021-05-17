@@ -24,3 +24,7 @@
 /.apt_generated_tests/
 /.project
 
+# Custom Tests
+CustomTest.java
+
+

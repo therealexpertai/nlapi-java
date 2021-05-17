@@ -18,17 +18,10 @@ package ai.expert.nlapi.v2.test;
 
 import ai.expert.nlapi.security.Authentication;
 import ai.expert.nlapi.v2.API;
-import ai.expert.nlapi.v2.edge.Analyzer;
-import ai.expert.nlapi.v2.edge.AnalyzerConfig;
-import ai.expert.nlapi.v2.edge.Model;
-import ai.expert.nlapi.v2.edge.ModelConfig;
-import ai.expert.nlapi.v2.message.AnalyzeResponse;
-import ai.expert.nlapi.v2.message.TaxonomyModelResponse;
-import ai.expert.nlapi.v2.message.TemplatesModelResponse;
-import ai.expert.nlapi.v2.model.Category;
-import ai.expert.nlapi.v2.model.Extraction;
-import ai.expert.nlapi.v2.model.Taxonomy;
-import ai.expert.nlapi.v2.model.TemplateNamespace;
+import ai.expert.nlapi.v2.edge.*;
+import ai.expert.nlapi.v2.message.*;
+import ai.expert.nlapi.v2.model.*;
+import ai.expert.nlapi.v2.model.stats.StatisticsInfo;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -83,21 +76,15 @@ public class EdgeAnalysisTest {
         }
     }
 
-    //@Ignore
-    @Test
+    //@Test
+    @Ignore
     public void testEdgeAnalysis() {
         try {
             // get authentication, if not exist it creates one
-            //Authentication authentication = TestUtils.getAuthentication();
+            Authentication authentication = TestUtils.getAuthentication();
 
             // create analyzer
-            //Analyzer analyzer = createAnalyzer(authentication);
-            Analyzer analyzer = new Analyzer(AnalyzerConfig.builder()
-                                          .withVersion(API.Versions.V2)
-                                          .withHost("http://127.0.0.1:6090")
-                                          //.withResource("standard_en_15.0")
-                                          //.withResource("corra")
-                                          .build());
+            Analyzer analyzer = createAnalyzer(authentication);
 
             // Full Analysis
             AnalyzeResponse analysis = analyzer.analyze(getSampleText());
@@ -131,11 +118,68 @@ public class EdgeAnalysisTest {
             analysis = analyzer.extraction(getSampleText());
             List<Extraction> extractions = analysis.getData().getExtractions();
 
-            //Model model = createModel();
+            Model model = createModel();
+
+            TemplatesModelResponse templModelResponse = model.templates();
+            List<TemplateNamespace> templates = templModelResponse.getData();
+
+            TaxonomyModelResponse taxModelResponse = model.taxonomy();
+            List<Taxonomy> taxonomies = taxModelResponse.getData();
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+            fail();
+        }
+    }
+
+    @Ignore
+    public void testEssexAnalysis() {
+        try {
+            String resourceName = "standard_en_16.0";
+            String essexHost = "http://127.0.0.1:6090";
+            // create analyzer
+            Analyzer analyzer = new Analyzer(AnalyzerConfig.builder()
+                                          .withVersion(API.Versions.V2)
+                                          .withHost(essexHost)
+                                          .withResource(resourceName)
+                                          .build());
+
+            // Full Analysis
+            AnalyzeResponse analysis = analyzer.analyze(getSampleText());
+            analysis.prettyPrint();
+
+            // assert there is the data passed as input
+            assertNotNull(analysis.getData());
+            assertNotNull(analysis.getData().getContent());
+            assertSame(analysis.getData().getLanguage(), API.Languages.en);
+
+            // assert there are all nl expert ai information
+            assertNotNull(analysis.getData().getEntities());
+            assertNotNull(analysis.getData().getTopics());
+            assertNotNull(analysis.getData().getKnowledge());
+
+            assertNotNull(analysis.getData().getMainLemmas());
+            assertNotNull(analysis.getData().getMainSyncons());
+            assertNotNull(analysis.getData().getMainPhrases());
+            assertNotNull(analysis.getData().getMainSentences());
+
+            assertNotNull(analysis.getData().getParagraphs());
+            assertNotNull(analysis.getData().getPhrases());
+            assertNotNull(analysis.getData().getSentences());
+            assertNotNull(analysis.getData().getTokens());
+
+
+            // categories and extractions
+            // Full Analysis
+            analysis = analyzer.classification(getSampleText());
+            List<Category> categories = analysis.getData().getCategories();
+            analysis = analyzer.extraction(getSampleText());
+            List<Extraction> extractions = analysis.getData().getExtractions();
+
             Model model = new Model(ModelConfig.builder()
                          .withVersion(API.Versions.V2)
-                          .withHost("http://127.0.0.1:6090")
-                          //.withResource("corra")
+                          .withHost(essexHost)
+                          .withResource(resourceName)
                          .build());
 
 
@@ -144,6 +188,18 @@ public class EdgeAnalysisTest {
 
             TaxonomyModelResponse taxModelResponse = model.taxonomy();
             List<Taxonomy> taxonomies = taxModelResponse.getData();
+
+
+            Info info = new Info(InfoConfig.builder()
+                        .withVersion(API.Versions.V2)
+                        .withHost(essexHost)
+                        .build());
+            ResourcesInfoResponse resResponse = info.resources();
+            List<ResourceInfo> resoures = resResponse.getData();
+            StatisticsInfoResponse statResponse = info.statistics();
+            StatisticsInfo statInfo = statResponse.getData();
+
+            info.health();
 
         }
         catch(Exception ex) {
