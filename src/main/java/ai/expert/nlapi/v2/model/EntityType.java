@@ -102,7 +102,10 @@ public enum EntityType {
     WRK("Work of human intelligence"),
 
     @JsonProperty("NPR")
-    NPR("Proper noun");
+    NPR("Proper noun"),
+
+    @JsonProperty("ENT")
+    ENT("Entity");
 
     private final String description;
 

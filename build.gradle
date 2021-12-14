@@ -13,7 +13,7 @@ plugins {
 }
 
 group = 'expert.ai'
-version = '2.3-SNAPSHOT'
+version = '2.3.0'
 description = 'Natural Language API expert.ai Java SDK v2'
 
 publishing {
@@ -36,8 +36,8 @@ dependencies {
     implementation('com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.11.1')
     implementation('com.konghq:unirest-java:3.8.06')
     implementation('com.konghq:unirest-objectmapper-jackson:3.8.06')
-    implementation('org.apache.logging.log4j:log4j-api:2.13.3')
-    implementation('org.apache.logging.log4j:log4j-core:2.13.3')
+    implementation('org.apache.logging.log4j:log4j-api:2.16.0')
+    implementation('org.apache.logging.log4j:log4j-core:2.16.0')
     compileOnly('org.projectlombok:lombok:1.18.12')
     testImplementation('junit:junit:4.12')
 }
