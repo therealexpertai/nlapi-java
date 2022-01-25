@@ -52,7 +52,7 @@ public class BasicAuthenticator implements Authenticator {
 
     @Override
     public String authenticate() throws NLApiException {
-        // chek credential
+        // check credential
         if(credential == null) {
             String msg = "Please check credential settings.";
             logger.error(msg);
