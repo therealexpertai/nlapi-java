@@ -71,4 +71,9 @@ public class TestUtils {
         Authenticator authenticator = new BasicAuthenticator(new Credential("FAKE", "FAKE", null));
         return new Authentication(authenticator);
     }
+
+    public static Authentication createExpiredJWTAuthentication(String token) throws Exception {
+        Authenticator authenticator = new BasicAuthenticator(new Credential("FAKE", "FAKE", token));
+        return new Authentication(authenticator);
+    }
 }

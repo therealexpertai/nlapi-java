@@ -17,6 +17,8 @@
 package ai.expert.nlapi.security;
 
 import ai.expert.nlapi.exceptions.NLApiException;
+import com.auth0.jwt.interfaces.DecodedJWT;
+import java.util.Date;
 
 public class Authentication {
 
@@ -28,11 +30,12 @@ public class Authentication {
     }
 
     public boolean isValid() {
-        return (getJWT() != null && !getJWT().isEmpty());
+        return (getJWT() != null && !getJWT().isEmpty() && !isExpired());
     }
 
     public boolean isExpired() {
-        return !isValid();
+        DecodedJWT decodedJWT = com.auth0.jwt.JWT.decode(getJWT());
+        return decodedJWT.getExpiresAt().before(new Date());
     }
 
     public String getJWT() {
