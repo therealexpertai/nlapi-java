@@ -1,9 +1,9 @@
 # expert.ai Natural Language API for Java v2
 
-Java client for the expert.ai Natural Language APIs adds Natural Language understanding capabilities to your Java apps.
-The client can use either the Cloud based [Natural Language API](https://docs.expert.ai/nlapi/latest/) or a local instance of [Edge NL API](https://docs.expert.ai/edgenlapi/latest/).
+Java client for expert.ai Natural Language API and Studio Local Deployment Agent adds Natural Language understanding capabilities to your Java apps.
+The client can use either the Cloud based [Natural Language API](https://docs.expert.ai/nlapi/latest/) or [Studio Local Deployment Agent](https://docs.expert.ai/studio/latest/lda-api/).
 
-Check out what expert.ai Natural Language API can do for your application by [our live demo](https://try.expert.ai/).
+Check out what expert.ai Natural Language API can do for your application with the [live demo](https://try.expert.ai/).
 Natural Language API provides a comprehensive set of natural language understanding capabilities based on expert.ai technology:
 
 * Document analysis:
@@ -59,7 +59,9 @@ cd nlapi-java
 
 ## Setting your credentials
 
-This Java Client checks your expert.ai credentials using a chain of credential providers.
+You need an expert.ai developer account to use the APIs and you can get one for free registering on the expert.ai [developer portal](https://developer.expert.ai).  
+
+This Java Client checks your credentials using a chain of credential providers.
 
 The default chain checks in order the following:
  
@@ -77,7 +79,7 @@ Here are some examples of how to use the library in order to leverage the Natura
 
 You can get the result of the document analysis applied to your text as follows:
 
-##### Natural Language API:
+#### Natural Language API:
 
 ```java
 
@@ -160,7 +162,7 @@ public class AnalisysTest {
 
 ```
 
-##### Edge NL API:
+#### Studio Local Deployment Agent:
 
 ```java
 
@@ -194,9 +196,7 @@ public class AnalisysTest {
         return new Authentication(authenticator);
     }
 
-    //Method for selecting the resource to be call by the API; 
-    //as today, the API provides the standard context only, and  
-    //five languages such as English, French, Spanish, German and Italian
+    //Method for selecting the API resource to be requested.
     public static Analyzer createAnalyzer() throws Exception {
         return new Analyzer(AnalyzerConfig.builder()
             .withVersion(API.Versions.V2)
@@ -289,7 +289,7 @@ public class ContextsTest {
 
 ### Document classification
 
-You can also run document classification with respect to the [IPTC Media Topic taxonomy](https://iptc.org/standards/media-topics/)
+You can also run document classification, for example with the [IPTC Media Topics taxonomy](https://iptc.org/standards/media-topics/)
 
 ```java
 
@@ -353,7 +353,7 @@ public class CategorizationIPTCTest {
 
 ```
 
-or with respect to the [GeoTax taxonomy](https://docs.expert.ai/nlapi/v2/guide/taxonomies/#geotax-taxonomy):
+or with the [GeoTax taxonomy](https://docs.expert.ai/nlapi/v2/guide/taxonomies/#geotax-taxonomy):
 
 ```java
 
@@ -622,7 +622,7 @@ public class DetectorsTest {
 ```
 ## API capabilities
 
-Please refer to the official [guide](https://docs.expert.ai/nlapi/v2/guide/) for the description of all the API capabilities.
+Make reference to the [Natural Language API](https://docs.expert.ai/nlapi/latest/guide/) and [Studio Local Deployment Agent](https://docs.expert.ai/studio/latest/lda-api/guide/) documentation to know more about the APIs capabilities.
 
 ## Notes
 
