@@ -112,7 +112,7 @@ public class DetectionTest {
             // assert there is the data passed as input
             assertNotNull(detect.getData());
             assertNotNull(detect.getData().getContent());
-            assertSame(detect.getData().getLanguage(), API.Languages.en);
+            assertSame(detect.getData().getLanguage(), API.Languages.it);
 
             // assert there are categories
             assertNotNull(detect.getData().getExtractions());
