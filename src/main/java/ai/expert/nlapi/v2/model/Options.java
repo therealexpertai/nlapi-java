@@ -18,13 +18,17 @@ package ai.expert.nlapi.v2.model;
 import lombok.Value;
 
 import java.util.List;
+import java.util.Map;
 
 @Value
 public class Options {
     List<String> analysis;
     List<String> features;
-
+    Map<String,Object> extra;
     public static Options of(List<String> analysis, List<String> features) {
-        return new Options(analysis, features);
+        return new Options(analysis, features,null);
+    }
+    public static Options of(List<String> analysis, List<String> features, Map<String,Object> extra) {
+        return new Options(analysis, features,extra);
     }
 }

@@ -26,6 +26,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -90,6 +92,8 @@ public class LocalExtraDataTest {
             features.add("syncpos");
             features.add("knowledge");
             features.add("extradata");
+            Map<String,Object> extra = new HashMap<>();
+            extra.put("key1","value1");
             AnalyzeResponse analysisResponse = analyzer.analyze(getSampleText(),analysis,features);
             analysisResponse.prettyPrint();
 

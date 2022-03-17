@@ -15,7 +15,8 @@ import org.junit.runners.Suite.SuiteClasses;
                 EntitiesTest.class,
                 SentimentTest.class,
                 RelationsTest.class,
-                FullAnalysisParsingTest.class
+                FullAnalysisParsingTest.class,
+                DetectionTest.class
               })
 public class ReleaseTest {
 }

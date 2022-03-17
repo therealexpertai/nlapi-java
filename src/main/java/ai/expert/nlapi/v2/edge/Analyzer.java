@@ -38,6 +38,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.security.MessageDigest;
+import java.util.Map;
 
 public class Analyzer {
 
@@ -63,7 +64,10 @@ public class Analyzer {
     }
 
     public AnalyzeResponse analyze(String text, List<String> analysis, List<String> features) throws NLApiException {
-        return getResponseDocument(text, analysis, features);
+        return getResponseDocument(text, analysis, features,null);
+    }
+    public AnalyzeResponse analyze(String text, List<String> analysis, List<String> features, Map<String,Object> extra) throws NLApiException {
+        return getResponseDocument(text, analysis, features,extra);
     }
 
     public AnalyzeResponse analyze(String text) throws NLApiException {
@@ -77,7 +81,7 @@ public class Analyzer {
         features.add("syncpos");
         features.add("knowledge");
         features.add("dependency");
-        return getResponseDocument(text, analysis, features);
+        return getResponseDocument(text, analysis, features,null);
     }
 
     public AnalyzeResponse disambiguation(String text) throws NLApiException {
@@ -87,7 +91,7 @@ public class Analyzer {
         features.add("syncpos");
         features.add("knowledge");
         features.add("dependency");
-        return getResponseDocument(text, analysis, features);
+        return getResponseDocument(text, analysis, features,null);
     }
 
     public AnalyzeResponse relevants(String text) throws NLApiException {
@@ -96,7 +100,7 @@ public class Analyzer {
         ArrayList<String> features = new ArrayList<>();
         features.add("syncpos");
         features.add("knowledge");
-        return getResponseDocument(text, analysis, features);
+        return getResponseDocument(text, analysis, features,null);
     }
 
     public AnalyzeResponse entities(String text) throws NLApiException {
@@ -105,7 +109,7 @@ public class Analyzer {
         ArrayList<String> features = new ArrayList<>();
         features.add("syncpos");
         features.add("knowledge");
-        return getResponseDocument(text, analysis, features);
+        return getResponseDocument(text, analysis, features,null);
     }
 
     public AnalyzeResponse relations(String text) throws NLApiException {
@@ -115,7 +119,7 @@ public class Analyzer {
         features.add("syncpos");
         features.add("knowledge");
         features.add("dependency");
-        return getResponseDocument(text, analysis, features);
+        return getResponseDocument(text, analysis, features,null);
     }
 
     public AnalyzeResponse sentiment(String text) throws NLApiException {
@@ -124,7 +128,7 @@ public class Analyzer {
         ArrayList<String> features = new ArrayList<>();
         features.add("syncpos");
         features.add("knowledge");
-        return getResponseDocument(text, analysis, features);
+        return getResponseDocument(text, analysis, features,null);
     }
 
     public AnalyzeResponse classification(String text) throws NLApiException {
@@ -132,7 +136,7 @@ public class Analyzer {
         analysis.add("categories");
         ArrayList<String> features = new ArrayList<>();
         features.add("syncpos");
-        return getResponseDocument(text, analysis, features);
+        return getResponseDocument(text, analysis, features,null);
     }
 
     public AnalyzeResponse extraction(String text) throws NLApiException {
@@ -140,13 +144,14 @@ public class Analyzer {
         analysis.add("extractions");
         ArrayList<String> features = new ArrayList<>();
         features.add("syncpos");
-        return getResponseDocument(text, analysis, features);
+        return getResponseDocument(text, analysis, features,null);
     }
 
-    private AnalyzeResponse getResponseDocument(String text, List<String> analysis, List<String> features) throws NLApiException {
+    private AnalyzeResponse getResponseDocument(String text, List<String> analysis, List<String> features,
+                                                Map<String,Object> extra) throws NLApiException {
 
         // get json reply from expert.ai API
-        String json = getResponseDocumentString(text, analysis, features);
+        String json = getResponseDocumentString(text, analysis, features,extra);
 
         // parsing and checking response
         AnalyzeResponse response = APIUtils.fromJSON(json, AnalyzeResponse.class);
@@ -188,7 +193,10 @@ public class Analyzer {
         return keyResponse.getKey();
     }
 
-    private String getResponseDocumentString(String text, List<String> analysis, List<String> features) throws NLApiException {
+    private String getResponseDocumentString(String text,
+                                             List<String> analysis,
+                                             List<String> features,
+                                             Map<String,Object> extra) throws NLApiException {
         String ekey = "";
         if (authentication!=null) {
             String md5 = getMD5(text);
@@ -202,7 +210,7 @@ public class Analyzer {
         logger.debug("Sending text to edge analyze API: " + URLpath);
         HttpResponse<String> response = Unirest.post(URLpath)
                                                .header("execution-key", ekey)
-                                               .body(new AnalysisRequestWithOptions(Document.of(text), Options.of(analysis, features), resource).toJSON())
+                                               .body(new AnalysisRequestWithOptions(Document.of(text), Options.of(analysis, features,extra), resource).toJSON())
                                                .asString();
         
         /*

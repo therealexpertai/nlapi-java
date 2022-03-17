@@ -19,6 +19,7 @@ package ai.expert.nlapi.v2.message;
 
 import ai.expert.nlapi.v2.model.Document;
 import ai.expert.nlapi.v2.model.Options;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,6 +38,7 @@ public class AnalysisRequestWithOptions {
     @SneakyThrows
     public String toJSON() {
         ObjectMapper om = new ObjectMapper();
+        om.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         return om.writeValueAsString(this);
     }
 }
