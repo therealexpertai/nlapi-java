@@ -30,8 +30,8 @@ import ai.expert.nlapi.v2.message.EdgeKeyResponse;
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
 import org.apache.commons.codec.digest.MessageDigestAlgorithms;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
@@ -42,7 +42,8 @@ import java.util.Map;
 
 public class Analyzer {
 
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LoggerFactory.getLogger(Analyzer.class);
+
 
     private final Authentication authentication;
     private final String resource;

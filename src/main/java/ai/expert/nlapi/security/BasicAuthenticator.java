@@ -25,14 +25,14 @@ import kong.unirest.Unirest;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Getter
 @EqualsAndHashCode
 @ToString
 public class BasicAuthenticator implements Authenticator {
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger  logger = LoggerFactory.getLogger(BasicAuthenticator.class);
 
     private final Credential credential;
 

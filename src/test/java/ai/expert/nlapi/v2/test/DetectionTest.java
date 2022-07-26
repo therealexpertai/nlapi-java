@@ -94,7 +94,62 @@ public class DetectionTest {
             fail();
         }
     }
+    @Test
+    public void testDetectorESG() {
+        try {
+            // get authentication, if not exist it creates one
+            Authentication authentication = TestUtils.getAuthentication();
 
+            // create detector
+            Detector detectorEn = createDetector(authentication, "hate-speech", API.Languages.en);
+
+            // send detector request and get response
+            DetectResponse detect = detectorEn.detect("I hate fucking niggers");
+            // print json response
+            detect.prettyPrint();
+
+            // assert there is the data passed as input
+            assertNotNull(detect.getData());
+            assertNotNull(detect.getData().getContent());
+            assertSame(detect.getData().getLanguage(), API.Languages.en);
+
+            // assert there are extractions
+            assertNotNull(detect.getData().getExtractions());
+            // assert there are extra data
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+            fail();
+        }
+    }
+
+    public void testDetectorHateSpeech() {
+        try {
+            // get authentication, if not exist it creates one
+            Authentication authentication = TestUtils.getAuthentication();
+
+            // create detector
+            Detector detectorEn = createDetector(authentication, "hate-speech", API.Languages.en);
+
+            // send detector request and get response
+            DetectResponse detect = detectorEn.detect(getSampleTextEn());
+            // print json response
+            detect.prettyPrint();
+
+            // assert there is the data passed as input
+            assertNotNull(detect.getData());
+            assertNotNull(detect.getData().getContent());
+            assertSame(detect.getData().getLanguage(), API.Languages.en);
+
+            // assert there are extractions
+            assertNotNull(detect.getData().getExtractions());
+            // assert there are extra data
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+            fail();
+        }
+    }
     @Test
     public void testDetectorIt() {
         try {

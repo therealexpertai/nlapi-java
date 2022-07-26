@@ -17,12 +17,12 @@
 package ai.expert.nlapi.security;
 
 import ai.expert.nlapi.utils.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 public class EnvironmentVariablesCredentialsProvider extends CredentialsProvider {
 
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger  logger = LoggerFactory.getLogger(EnvironmentVariablesCredentialsProvider.class);
+
 
     public EnvironmentVariablesCredentialsProvider() {
     }

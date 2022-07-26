@@ -23,17 +23,17 @@ import ai.expert.nlapi.utils.APIUtils;
 import ai.expert.nlapi.utils.ObjectMapperAdapter;
 import ai.expert.nlapi.v2.API;
 import ai.expert.nlapi.v2.message.AnalysisRequest;
-import ai.expert.nlapi.v2.message.CategorizeResponse;
 import ai.expert.nlapi.v2.message.DetectResponse;
 import ai.expert.nlapi.v2.model.Document;
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Detector {
 
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LoggerFactory.getLogger(Detector.class);
+
 
     private final Authentication authentication;
     private final String URL;

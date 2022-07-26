@@ -24,12 +24,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 public class APIUtils {
 
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LoggerFactory.getLogger(APIUtils.class);
+
 
     public static <T> T fromJSON(String json, Class<T> valueType) throws NLApiException {
 
@@ -47,16 +49,14 @@ public class APIUtils {
             String msg = String.format("Please report this issue. Error while parsing json response into class [%s]: %s",
                                        valueType.toString(),
                                        json);
-            logger.error(msg);
-            logger.error(e);
+            logger.error(msg,e);
             throw new NLApiException(NLApiErrorCode.PARSING_ERROR, msg);
         }
         catch(JsonProcessingException e) {
             String msg = String.format("Please report this issue. Error while processing json into class [%s]: %s",
                                        valueType.toString(),
                                        json);
-            logger.error(msg);
-            logger.error(e);
+            logger.error(msg,e);
             throw new NLApiException(NLApiErrorCode.PARSING_ERROR, msg);
         }
 

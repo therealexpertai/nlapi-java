@@ -23,12 +23,13 @@ import ai.expert.nlapi.utils.ObjectMapperAdapter;
 import ai.expert.nlapi.v2.message.*;
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Info {
 
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LoggerFactory.getLogger(Info.class);
+
 
     private final String RESOURCES_URL;
     private final String STATISTICS_URL;

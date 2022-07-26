@@ -32,12 +32,11 @@ repositories {
 
 dependencies {
     annotationProcessor("org.projectlombok:lombok:1.18.12")
-    implementation('com.fasterxml.jackson.core:jackson-databind:2.11.1')
-    implementation('com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.11.1')
+    implementation('com.fasterxml.jackson.core:jackson-databind:2.13.2.2')
+    implementation('com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.13.2')
     implementation('com.konghq:unirest-java:3.8.06')
     implementation('com.konghq:unirest-objectmapper-jackson:3.8.06')
-    implementation('org.apache.logging.log4j:log4j-api:2.17.2')
-    implementation('org.apache.logging.log4j:log4j-core:2.17.2')
+    implementation ('org.slf4j:slf4j-api:1.7.36')
     compileOnly('org.projectlombok:lombok:1.18.12')
     testImplementation('junit:junit:4.12')
     implementation 'com.auth0:java-jwt:3.18.2'

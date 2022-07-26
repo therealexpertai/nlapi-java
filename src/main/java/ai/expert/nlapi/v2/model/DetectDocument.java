@@ -17,6 +17,7 @@
 package ai.expert.nlapi.v2.model;
 
 import ai.expert.nlapi.v2.API;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,11 +28,13 @@ import java.util.Map;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class DetectDocument {
 
     private String content;
     private API.Languages language;
     private String version;
+    private List<Category> categories;
     private List<Extraction> extractions;
     private List<Entity> entities;
     private List<KnowledgeEntry> knowledge;
