@@ -95,7 +95,7 @@ public class DetectionTest {
         }
     }
     @Test
-    public void testDetectorESG() {
+    public void testDetectorHateSpeech() {
         try {
             // get authentication, if not exist it creates one
             Authentication authentication = TestUtils.getAuthentication();
@@ -122,14 +122,14 @@ public class DetectionTest {
             fail();
         }
     }
-
-    public void testDetectorHateSpeech() {
+    @Test
+    public void testDetectorESG() {
         try {
             // get authentication, if not exist it creates one
             Authentication authentication = TestUtils.getAuthentication();
 
             // create detector
-            Detector detectorEn = createDetector(authentication, "hate-speech", API.Languages.en);
+            Detector detectorEn = createDetector(authentication, "esg-sentiment", API.Languages.en);
 
             // send detector request and get response
             DetectResponse detect = detectorEn.detect(getSampleTextEn());
