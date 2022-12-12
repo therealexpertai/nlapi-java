@@ -21,6 +21,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Map;
 
 @Data
 @AllArgsConstructor
@@ -30,9 +31,10 @@ public class Category {
     private String id;
     private String label;
     private List<String> hierarchy;
-    private int score;
+    private Float score;
     private Boolean winner;
     private String namespace;
     private Float frequency;
     private List<DocumentPosition> positions;
+    private Map<String, Object> extraData;
 }

@@ -20,6 +20,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,4 +29,6 @@ public class DocumentPosition {
 
     private long start;
     private long end;
+    private Float score;
+    private List<Geometry> geometry;
 }

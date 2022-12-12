@@ -21,6 +21,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Map;
 
 @Data
 @AllArgsConstructor
@@ -29,5 +30,7 @@ public class ExtractionField {
 
     private String name;
     private String value;
+    private Float score;
     private List<DocumentPosition> positions;
+    private Map<String, Object> extraData;
 }

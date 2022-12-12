@@ -21,6 +21,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Map;
 
 @Data
 @AllArgsConstructor
@@ -29,5 +30,7 @@ public class Extraction {
 
     private String namespace;
     private String template;
+    private Float score;
     private List<ExtractionField> fields;
+    private Map<String, Object> extraData;
 }

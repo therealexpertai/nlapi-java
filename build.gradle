@@ -4,6 +4,9 @@ buildscript {
         mavenCentral()
         jcenter()
     }
+    dependencies {
+        classpath 'org.owasp:dependency-check-gradle:7.4.1'
+    }
 }
 
 plugins {
@@ -31,17 +34,17 @@ repositories {
 }
 
 dependencies {
-    annotationProcessor("org.projectlombok:lombok:1.18.12")
-    implementation('com.fasterxml.jackson.core:jackson-databind:2.13.3')
-    implementation('com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.13.3')
-    implementation('com.konghq:unirest-java:3.13.10')
-    implementation('com.konghq:unirest-objectmapper-jackson:3.13.10')
-    implementation ('org.slf4j:slf4j-api:1.7.36')
+    annotationProcessor("org.projectlombok:lombok:1.18.24")
+    implementation('com.fasterxml.jackson.core:jackson-databind:2.14.1')
+    implementation('com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.14.1')
+    implementation('com.konghq:unirest-java:3.14.1')
+    implementation('com.konghq:unirest-objectmapper-jackson:3.14.1')
+    implementation ('org.slf4j:slf4j-api:2.0.5')
     compileOnly('org.projectlombok:lombok:1.18.24')
-    testImplementation('junit:junit:4.12')
-    implementation 'com.auth0:java-jwt:4.0.0'
+    testImplementation('junit:junit:4.13.2')
+    implementation 'com.auth0:java-jwt:4.2.1'
 }
-
+apply plugin: 'org.owasp.dependencycheck'
 test {
     useJUnit()
     minHeapSize = "512m"
